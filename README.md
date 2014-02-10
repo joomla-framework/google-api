@@ -1,4 +1,4 @@
-## The Google Package
+## The Google Package [![Build Status](https://travis-ci.org/joomla-framework/google-api.png?branch=master)](https://travis-ci.org/joomla-framework/google-api)
 
 ### Using the Google Package
 
