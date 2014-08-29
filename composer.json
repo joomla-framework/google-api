@@ -13,13 +13,15 @@
         "joomla/filesystem": "~1.0"
     },
     "require-dev": {
-    	"joomla/input": "~1.0",
-    	"joomla/test": "~1.0"
+        "joomla/input": "~1.0",
+        "joomla/test": "~1.0",
+        "phpunit/phpunit": "4.*",
+        "squizlabs/php_codesniffer": "1.*"
     },
     "autoload": {
-    	"psr-4": {
-    		"Joomla\\Google\\": "src/",
+        "psr-4": {
+            "Joomla\\Google\\": "src/",
             "Joomla\\Google\\Tests\\": "Tests/"
-    	}
+        }
     }
 }
