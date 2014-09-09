@@ -40,7 +40,7 @@ class Maps extends Embed
 	 */
 	public function __construct(Registry $options = null, Uri $uri = null, Http $http = null)
 	{
-		parent::__construct($options = null, $uri = null);
+		parent::__construct($options, $uri);
 		$this->http = $http ? $http : new Http($this->options);
 	}
 
