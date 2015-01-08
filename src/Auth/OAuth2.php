@@ -33,7 +33,7 @@ class OAuth2 extends Auth
 	 *
 	 * @since   1.0
 	 */
-	public function __construct(Registry $options, Client $client)
+	public function __construct($options, Client $client)
 	{
 		$this->options = $options;
 		$this->client = $client;
