@@ -28,8 +28,8 @@ class OAuth2 extends Auth
 	/**
 	 * Constructor.
 	 *
-	 * @param   Registry  $options  Auth options object.
-	 * @param   Client    $client   OAuth client for Google authentication.
+	 * @param   array|\ArrayAccess  $options  Auth options object.
+	 * @param   Client              $client   OAuth client for Google authentication.
 	 *
 	 * @since   1.0
 	 */

@@ -16,7 +16,9 @@ namespace Joomla\Google;
 abstract class Auth
 {
 	/**
-	 * @var    array  Options for the Google authentication object.
+	 * Options for the Google authentication object.
+	 *
+	 * @var    array|\ArrayAccess
 	 * @since  1.0
 	 */
 	protected $options;
