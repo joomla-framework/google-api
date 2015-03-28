@@ -95,10 +95,8 @@ class Album extends Data
 
 			return true;
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -307,10 +305,8 @@ class Album extends Data
 
 			return $this;
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -330,10 +326,8 @@ class Album extends Data
 
 			return $this;
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -363,15 +357,11 @@ class Album extends Data
 
 				return $items;
 			}
-			else
-			{
-				throw new \UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
-			}
+
+			throw new \UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -423,10 +413,8 @@ class Album extends Data
 
 			return new Photo($this->safeXML($jdata->body), $this->options, $this->auth);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**

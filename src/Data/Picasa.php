@@ -66,15 +66,11 @@ class Picasa extends Data
 
 				return $items;
 			}
-			else
-			{
-				throw new \UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
-			}
+
+			throw new \UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -118,10 +114,8 @@ class Picasa extends Data
 
 			return new Picasa\Album($xml, $this->options, $this->auth);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -143,9 +137,7 @@ class Picasa extends Data
 
 			return new Picasa\Album($xml, $this->options, $this->auth);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 }

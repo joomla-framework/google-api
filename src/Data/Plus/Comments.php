@@ -97,10 +97,8 @@ class Comments extends Data
 
 			return json_decode($jdata->body, true);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -129,9 +127,7 @@ class Comments extends Data
 
 			return json_decode($jdata->body, true);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 }

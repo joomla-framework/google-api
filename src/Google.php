@@ -106,7 +106,7 @@ class Google
 				return new Data\Calendar($options, $auth);
 
 			default:
-				return null;
+				throw new \InvalidArgumentException("Invalid data object type '$name'.");
 		}
 	}
 
@@ -136,7 +136,7 @@ class Google
 				return new Embed\Analytics($options);
 
 			default:
-				return null;
+				throw new \InvalidArgumentException("Invalid embed object type '$name'.");
 		}
 	}
 

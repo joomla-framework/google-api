@@ -139,14 +139,13 @@ abstract class Data
 
 			return $data['items'];
 		}
-		elseif ($data)
+
+		if ($data)
 		{
 			return array();
 		}
-		else
-		{
-			throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
-		}
+
+		throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 	}
 
 	/**
