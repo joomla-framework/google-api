@@ -20,7 +20,9 @@ use Joomla\Registry\Registry;
 class Album extends Data
 {
 	/**
-	 * @var    \SimpleXMLElement  The album's XML
+	 * The album's XML
+	 *
+	 * @var    \SimpleXMLElement
 	 * @since  1.0
 	 */
 	protected $xml;
@@ -28,13 +30,13 @@ class Album extends Data
 	/**
 	 * Constructor.
 	 *
-	 * @param   \SimpleXMLElement  $xml      XML from Google
-	 * @param   Registry           $options  Google options object
-	 * @param   Auth               $auth     Google data http client object
+	 * @param   \SimpleXMLElement   $xml      XML from Google
+	 * @param   array|\ArrayAccess  $options  Google options object
+	 * @param   Auth                $auth     Google data http client object
 	 *
 	 * @since   1.0
 	 */
-	public function __construct(\SimpleXMLElement $xml, Registry $options = null, Auth $auth = null)
+	public function __construct(\SimpleXMLElement $xml, $options = array(), Auth $auth = null)
 	{
 		$this->xml = $xml;
 

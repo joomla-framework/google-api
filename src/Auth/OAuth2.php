@@ -20,7 +20,9 @@ use Joomla\Registry\Registry;
 class OAuth2 extends Auth
 {
 	/**
-	 * @var    Client  OAuth client for the Google authentication object.
+	 * OAuth client for the Google authentication object.
+	 *
+	 * @var    Client
 	 * @since  1.0
 	 */
 	protected $client;
@@ -35,8 +37,15 @@ class OAuth2 extends Auth
 	 */
 	public function __construct($options, Client $client)
 	{
+		if (!is_array($options) && !($options instanceof \ArrayAccess))
+		{
+			throw new \InvalidArgumentException(
+				'The options param must be an array or implement the ArrayAccess interface.'
+			);
+		}
+
 		$this->options = $options;
-		$this->client = $client;
+		$this->client  = $client;
 	}
 
 	/**

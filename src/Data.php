@@ -20,13 +20,17 @@ use Exception;
 abstract class Data
 {
 	/**
-	 * @var    array  Options for the Google data object.
+	 * Options for the Google data object.
+	 *
+	 * @var    array|\ArrayAccess
 	 * @since  1.0
 	 */
 	protected $options;
 
 	/**
-	 * @var    Auth  Authentication client for the Google data object.
+	 * Authentication client for the Google data object.
+	 *
+	 * @var    Auth
 	 * @since  1.0
 	 */
 	protected $auth;
@@ -34,13 +38,20 @@ abstract class Data
 	/**
 	 * Constructor.
 	 *
-	 * @param   array  $options  Google options object.
-	 * @param   Auth   $auth     Google data http client object.
+	 * @param   array|\ArrayAccess  $options  Google options object.
+	 * @param   Auth                $auth     Google data http client object.
 	 *
 	 * @since   1.0
 	 */
 	public function __construct($options = array(), Auth $auth = null)
 	{
+		if (!is_array($options) && !($options instanceof \ArrayAccess))
+		{
+			throw new \InvalidArgumentException(
+				'The options param must be an array or implement the ArrayAccess interface.'
+			);
+		}
+
 		$this->options = $options;
 		$this->auth = isset($auth) ? $auth : new Auth\OAuth2($this->options);
 	}
