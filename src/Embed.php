@@ -18,13 +18,17 @@ use Joomla\Uri\Uri;
 abstract class Embed
 {
 	/**
-	 * @var    array  Options for the Google data object.
+	 * Options for the Google data object.
+	 *
+	 * @var    array
 	 * @since  1.0
 	 */
 	protected $options;
 
 	/**
-	 * @var    Uri  URI of the page being rendered.
+	 * URI of the page being rendered.
+	 *
+	 * @var    Uri
 	 * @since  1.0
 	 */
 	protected $uri;
@@ -32,13 +36,20 @@ abstract class Embed
 	/**
 	 * Constructor.
 	 *
-	 * @param   array  $options  Google options object
-	 * @param   Uri    $uri      URL of the page being rendered
+	 * @param   array|\ArrayAccess  $options  Google options object
+	 * @param   Uri                 $uri      URL of the page being rendered
 	 *
 	 * @since   1.0
 	 */
 	public function __construct($options = array(), Uri $uri = null)
 	{
+		if (!is_array($options) && !($options instanceof \ArrayAccess))
+		{
+			throw new \InvalidArgumentException(
+				'The options param must be an array or implement the ArrayAccess interface.'
+			);
+		}
+
 		$this->options = $options;
 		$this->uri = $uri ? $uri : new Uri;
 	}

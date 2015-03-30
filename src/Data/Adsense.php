@@ -25,12 +25,12 @@ class Adsense extends Data
 	/**
 	 * Constructor.
 	 *
-	 * @param   Registry  $options  Google options object
-	 * @param   Auth      $auth     Google data http client object
+	 * @param   array|\ArrayAccess  $options  Google options object
+	 * @param   Auth                $auth     Google data http client object
 	 *
 	 * @since   1.0
 	 */
-	public function __construct(Registry $options = null, Auth $auth = null)
+	public function __construct($options = array(), Auth $auth = null)
 	{
 		parent::__construct($options, $auth);
 
@@ -62,15 +62,11 @@ class Adsense extends Data
 			{
 				return $data;
 			}
-			else
-			{
-				throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
-			}
+
+			throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -94,10 +90,8 @@ class Adsense extends Data
 
 			return $this->listGetData($url, $maxpages, $next);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -122,10 +116,8 @@ class Adsense extends Data
 
 			return $this->listGetData($url, $maxpages, $next);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -152,15 +144,11 @@ class Adsense extends Data
 			{
 				return $data;
 			}
-			else
-			{
-				throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
-			}
+
+			throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -188,10 +176,8 @@ class Adsense extends Data
 
 			return $this->listGetData($url, $maxpages, $next);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -218,15 +204,11 @@ class Adsense extends Data
 			{
 				return $data;
 			}
-			else
-			{
-				throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
-			}
+
+			throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -253,10 +235,8 @@ class Adsense extends Data
 
 			return $this->listGetData($url, $maxpages, $next);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -284,10 +264,8 @@ class Adsense extends Data
 
 			return $this->listGetData($url, $maxpages, $next);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -314,10 +292,8 @@ class Adsense extends Data
 
 			return $this->listGetData($url, $maxpages, $next);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -400,16 +376,13 @@ class Adsense extends Data
 				$jdata = $this->query($url . 'startIndex=' . count($data['rows']));
 				$newdata = json_decode($jdata->body, true);
 
-				if ($newdata && array_key_exists('rows', $newdata))
-				{
-					$newdata['rows'] = array_merge($data['rows'], $newdata['rows']);
-					$data = $newdata;
-				}
-				else
+				if (!($newdata && array_key_exists('rows', $newdata)))
 				{
 					throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 				}
 
+				$newdata['rows'] = array_merge($data['rows'], $newdata['rows']);
+				$data = $newdata;
 				$i++;
 			}
 
@@ -417,9 +390,7 @@ class Adsense extends Data
 
 			return $data;
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 }

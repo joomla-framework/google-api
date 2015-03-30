@@ -15,37 +15,47 @@ use Joomla\Registry\Registry;
 /**
  * Google+ data class for the Joomla Framework.
  *
+ * @property-read  Plus\Activities  $activities  Google+ API object for activities.
+ * @property-read  Plus\Comments    $comments    Google+ API object for comments.
+ * @property-read  Plus\People      $people      Google+ API object for people.
+ *
  * @since  1.0
  */
 class Plus extends Data
 {
 	/**
-	 * @var    Plus\People  Google+ API object for people.
-	 * @since  1.0
-	 */
-	protected $people;
-
-	/**
-	 * @var    Plus\Activities  Google+ API object for people.
+	 * Google+ API object for activities.
+	 *
+	 * @var    Plus\Activities
 	 * @since  1.0
 	 */
 	protected $activities;
 
 	/**
-	 * @var    Plus\Comments  Google+ API object for people.
+	 * Google+ API object for comments.
+	 *
+	 * @var    Plus\Comments
 	 * @since  1.0
 	 */
 	protected $comments;
 
 	/**
+	 * Google+ API object for people.
+	 *
+	 * @var    Plus\People
+	 * @since  1.0
+	 */
+	protected $people;
+
+	/**
 	 * Constructor.
 	 *
-	 * @param   Registry  $options  Google options object
-	 * @param   Auth      $auth     Google data http client object
+	 * @param   array|\ArrayAccess  $options  Google options object
+	 * @param   Auth                $auth     Google data http client object
 	 *
 	 * @since   1.0
 	 */
-	public function __construct(Registry $options = null, Auth $auth = null)
+	public function __construct($options = array(), Auth $auth = null)
 	{
 		// Setup the default API url if not already set.
 		$options->def('api.url', 'https://www.googleapis.com/plus/v1/');
@@ -63,7 +73,7 @@ class Plus extends Data
 	 *
 	 * @param   string  $name  Name of property to retrieve
 	 *
-	 * @return  Plus  Google+ API object (people, activities, comments).
+	 * @return  $this
 	 *
 	 * @since   1.0
 	 * @throws  \InvalidArgumentException If $name is not a valid sub class.

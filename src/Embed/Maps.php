@@ -24,7 +24,9 @@ use UnexpectedValueException;
 class Maps extends Embed
 {
 	/**
-	 * @var    Http  The HTTP client object to use in sending HTTP requests.
+	 * The HTTP client object to use in sending HTTP requests.
+	 *
+	 * @var    Http
 	 * @since  1.0
 	 */
 	protected $http;
@@ -32,13 +34,13 @@ class Maps extends Embed
 	/**
 	 * Constructor.
 	 *
-	 * @param   Registry  $options  Google options object
-	 * @param   Uri       $uri      URL of the page being rendered
-	 * @param   Http      $http     Http client for geocoding requests
+	 * @param   array|\ArrayAccess  $options  Google options object
+	 * @param   Uri                 $uri      URL of the page being rendered
+	 * @param   Http                $http     Http client for geocoding requests
 	 *
 	 * @since   1.0
 	 */
-	public function __construct(Registry $options = null, Uri $uri = null, Http $http = null)
+	public function __construct($options = array(), Uri $uri = null, Http $http = null)
 	{
 		parent::__construct($options, $uri);
 		$this->http = $http ? $http : new Http($this->options);

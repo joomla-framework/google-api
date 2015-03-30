@@ -22,12 +22,12 @@ class People extends Data
 	/**
 	 * Constructor.
 	 *
-	 * @param   Registry  $options  Google options object
-	 * @param   Auth      $auth     Google data http client object
+	 * @param   array|\ArrayAccess  $options  Google options object
+	 * @param   Auth                $auth     Google data http client object
 	 *
 	 * @since   1.0
 	 */
-	public function __construct(Registry $options = null, Auth $auth = null)
+	public function __construct($options = array(), Auth $auth = null)
 	{
 		parent::__construct($options, $auth);
 
@@ -63,10 +63,8 @@ class People extends Data
 
 			return json_decode($jdata->body, true);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -117,10 +115,8 @@ class People extends Data
 
 			return json_decode($jdata->body, true);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -167,9 +163,7 @@ class People extends Data
 
 			return json_decode($jdata->body, true);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 }

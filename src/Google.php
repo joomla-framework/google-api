@@ -11,33 +11,38 @@ namespace Joomla\Google;
 /**
  * Joomla Framework class for interacting with the Google APIs.
  *
- * @property-read  Data   $data    Google API object for data.
- * @property-read  Embed  $embed   Google API object for embed generation.
- *
  * @since  1.0
  */
 class Google
 {
 	/**
-	 * @var    array  Options for the Google object.
+	 * Options for the Google object.
+	 *
+	 * @var    array|\ArrayAccess
 	 * @since  1.0
 	 */
 	protected $options;
 
 	/**
-	 * @var    Auth  The authentication client object to use in sending authenticated HTTP requests.
+	 * The authentication client object to use in sending authenticated HTTP requests.
+	 *
+	 * @var    Auth
 	 * @since  1.0
 	 */
 	protected $auth;
 
 	/**
-	 * @var    Data  Google API object for data request.
+	 * Google API object for data request.
+	 *
+	 * @var    Data
 	 * @since  1.0
 	 */
 	protected $data;
 
 	/**
-	 * @var    Embed  Google API object for embed generation.
+	 * Google API object for embed generation.
+	 *
+	 * @var    Embed
 	 * @since  1.0
 	 */
 	protected $embed;
@@ -45,15 +50,22 @@ class Google
 	/**
 	 * Constructor.
 	 *
-	 * @param   array  $options  Google options object.
-	 * @param   Auth   $auth     The authentication client object.
+	 * @param   array|\ArrayAccess  $options  Google options object.
+	 * @param   Auth                $auth     The authentication client object.
 	 *
 	 * @since   1.0
 	 */
 	public function __construct($options = array(), Auth $auth = null)
 	{
+		if (!is_array($options) && !($options instanceof \ArrayAccess))
+		{
+			throw new \InvalidArgumentException(
+				'The options param must be an array or implement the ArrayAccess interface.'
+			);
+		}
+
 		$this->options = $options;
-		$this->auth  = isset($auth) ? $auth : new Auth\OAuth2($this->options);
+		$this->auth    = isset($auth) ? $auth : new Auth\OAuth2($this->options);
 	}
 
 	/**
@@ -94,7 +106,7 @@ class Google
 				return new Data\Calendar($options, $auth);
 
 			default:
-				return null;
+				throw new \InvalidArgumentException("Invalid data object type '$name'.");
 		}
 	}
 
@@ -124,7 +136,7 @@ class Google
 				return new Embed\Analytics($options);
 
 			default:
-				return null;
+				throw new \InvalidArgumentException("Invalid embed object type '$name'.");
 		}
 	}
 

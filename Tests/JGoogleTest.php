@@ -62,7 +62,6 @@ class GoogleTest extends GoogleTestCase
 			$this->object->data('Calendar'),
 			$this->isInstanceOf('Joomla\Google\Data\Calendar')
 		);
-		$this->assertNull($this->object->data('NotAClass'));
 	}
 
 	/**
@@ -81,7 +80,6 @@ class GoogleTest extends GoogleTestCase
 			$this->object->embed('Analytics'),
 			$this->isInstanceOf('Joomla\Google\Embed\Analytics')
 		);
-		$this->assertNull($this->object->embed('NotAClass'));
 	}
 
 	/**
