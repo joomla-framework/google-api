@@ -301,7 +301,7 @@ class Album extends Data
 				throw $e;
 			}
 
-			$this->xml = $this->safeXML($jdata->body);
+			$this->xml = $this->safeXml($jdata->body);
 
 			return $this;
 		}
@@ -324,7 +324,7 @@ class Album extends Data
 		{
 			$url = $this->getLink();
 			$jdata = $this->query($url, null, array('GData-Version' => 2));
-			$this->xml = $this->safeXML($jdata->body);
+			$this->xml = $this->safeXml($jdata->body);
 
 			return $this;
 		}
@@ -348,7 +348,7 @@ class Album extends Data
 		{
 			$url = $this->getLink('http://schemas.google.com/g/2005#feed');
 			$jdata = $this->query($url, null, array('GData-Version' => 2));
-			$xml = $this->safeXML($jdata->body);
+			$xml = $this->safeXml($jdata->body);
 
 			if (isset($xml->children()->entry))
 			{
@@ -391,7 +391,7 @@ class Album extends Data
 		{
 			$title = $title != '' ? $title : basename($file);
 
-			if (!($type = $this->getMIME($file)))
+			if (!($type = $this->getMime($file)))
 			{
 				throw new \RuntimeException("Inappropriate file type.");
 			}
@@ -419,7 +419,7 @@ class Album extends Data
 
 			$jdata = $this->query($this->getLink(), $post, array('GData-Version' => 2, 'Content-Type: multipart/related'), 'post');
 
-			return new Photo($this->safeXML($jdata->body), $this->options, $this->auth);
+			return new Photo($this->safeXml($jdata->body), $this->options, $this->auth);
 		}
 		else
 		{
@@ -437,7 +437,7 @@ class Album extends Data
 	 * @since   1.0
 	 * @throws  \UnexpectedValueException
 	 */
-	protected function getMIME($file)
+	protected function getMime($file)
 	{
 		switch (strtolower(pathinfo($file, PATHINFO_EXTENSION)))
 		{
