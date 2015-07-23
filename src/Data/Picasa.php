@@ -53,7 +53,7 @@ class Picasa extends Data
 		{
 			$url = 'https://picasaweb.google.com/data/feed/api/user/' . urlencode($userID);
 			$jdata = $this->query($url, null, array('GData-Version' => 2));
-			$xml = $this->safeXML($jdata->body);
+			$xml = $this->safeXml($jdata->body);
 
 			if (isset($xml->children()->entry))
 			{
@@ -114,7 +114,7 @@ class Picasa extends Data
 			$url = 'https://picasaweb.google.com/data/feed/api/user/' . urlencode($userID);
 			$jdata = $this->query($url, $xml->asXML(), array('GData-Version' => 2, 'Content-type' => 'application/atom+xml'), 'post');
 
-			$xml = $this->safeXML($jdata->body);
+			$xml = $this->safeXml($jdata->body);
 
 			return new Picasa\Album($xml, $this->options, $this->auth);
 		}
@@ -139,7 +139,7 @@ class Picasa extends Data
 		if ($this->isAuthenticated())
 		{
 			$jdata = $this->query($url, null, array('GData-Version' => 2));
-			$xml = $this->safeXML($jdata->body);
+			$xml = $this->safeXml($jdata->body);
 
 			return new Picasa\Album($xml, $this->options, $this->auth);
 		}
