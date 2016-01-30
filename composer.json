@@ -29,5 +29,6 @@
 	        "dev-2.0-dev": "2.0-dev"
         }
     },
+    "minimum-stability": "dev",
     "prefer-stable": true
 }
