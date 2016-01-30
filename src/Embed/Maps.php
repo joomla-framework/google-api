@@ -81,7 +81,7 @@ class Maps extends Embed
 	 *
 	 * @since   1.0
 	 */
-	public function getMapID()
+	public function getMapId()
 	{
 		return $this->getOption('mapid') ? $this->getOption('mapid') : 'map_canvas';
 	}
@@ -95,7 +95,7 @@ class Maps extends Embed
 	 *
 	 * @since   1.0
 	 */
-	public function setMapID($id)
+	public function setMapId($id)
 	{
 		$this->setOption('mapid', $id);
 
@@ -566,7 +566,7 @@ class Maps extends Embed
 		$zoom = $this->getZoom();
 		$center = $this->getCenter();
 		$maptype = $this->getMapType();
-		$id = $this->getMapID();
+		$id = $this->getMapId();
 		$scheme = $this->isSecure() ? 'https' : 'http';
 		$key = $this->getKey();
 		$sensor = $this->hasSensor() ? 'true' : 'false';
@@ -651,7 +651,7 @@ class Maps extends Embed
 	 */
 	public function getBody()
 	{
-		$id = $this->getMapID();
+		$id = $this->getMapId();
 		$class = $this->getMapClass();
 		$style = $this->getMapStyle();
 

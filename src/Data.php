@@ -90,7 +90,7 @@ abstract class Data
 	 * @since   1.0
 	 * @throws  UnexpectedValueException
 	 */
-	protected static function safeXML($data)
+	protected static function safeXml($data)
 	{
 		try
 		{
