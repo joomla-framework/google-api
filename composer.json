@@ -20,7 +20,11 @@
     },
     "autoload": {
         "psr-4": {
-            "Joomla\\Google\\": "src/",
+            "Joomla\\Google\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "Joomla\\Google\\Tests\\": "Tests/"
         }
     },
