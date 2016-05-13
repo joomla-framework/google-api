@@ -682,7 +682,7 @@ class Maps extends Embed
 	 */
 	public function geocodeAddress($address)
 	{
-		$uri = JUri::getInstance('https://maps.googleapis.com/maps/api/geocode/json');
+		$uri = new Uri('https://maps.googleapis.com/maps/api/geocode/json');
 
 		$uri->setVar('address', urlencode($address));
 
