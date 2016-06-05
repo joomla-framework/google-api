@@ -742,7 +742,10 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
  */
 function mapsGeocodeCallback($url, array $headers = null, $timeout = null)
 {
-	parse_str($url, $params);
+	$query = parse_url($url, PHP_URL_QUERY);
+	
+	parse_str($query, $params);
+	
 	$address = strtolower($params['address']);
 
 	switch ($address)
