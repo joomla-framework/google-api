@@ -253,7 +253,7 @@ class JGoogleDataPicasaPhotoTest extends GoogleTestCase
 	 */
 	public function testSetTime()
 	{
-		$time = $this->object->setTime('FIX')->getTime();
+		$time = $this->object->setTime(0)->getTime();
 		$this->assertEquals($time, 0);
 	}
 
