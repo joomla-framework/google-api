@@ -386,7 +386,7 @@ class Calendar extends Data
 			{
 				$startobj = new DateTime($start);
 			}
-			elseif ($start instanceof \DateTime)
+			elseif ($start instanceof \DateTimeInterface)
 			{
 				$startobj = $start;
 			}
