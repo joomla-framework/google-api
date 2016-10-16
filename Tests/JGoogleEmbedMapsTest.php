@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright  Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @copyright  Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -743,9 +743,9 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 function mapsGeocodeCallback($url, array $headers = null, $timeout = null)
 {
 	$query = parse_url($url, PHP_URL_QUERY);
-	
+
 	parse_str($query, $params);
-	
+
 	$address = strtolower($params['address']);
 
 	switch ($address)
