@@ -9,8 +9,7 @@
         "php": "^5.3.10|~7.0",
         "joomla/registry": "~1.0",
         "joomla/uri": "~1.0",
-        "joomla/oauth2": "~1.1",
-        "joomla/filesystem": "~1.0"
+        "joomla/oauth2": "~1.1"
     },
     "require-dev": {
         "joomla/input": "~1.0",
