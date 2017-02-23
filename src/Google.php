@@ -55,7 +55,7 @@ class Google
 	 *
 	 * @since   1.0
 	 */
-	public function __construct($options = array(), Auth $auth = null)
+	public function __construct(Auth\OAuth2 $auth, $options = array())
 	{
 		if (!is_array($options) && !($options instanceof \ArrayAccess))
 		{
@@ -65,7 +65,7 @@ class Google
 		}
 
 		$this->options = $options;
-		$this->auth    = isset($auth) ? $auth : new Auth\OAuth2($this->options);
+		$this->auth  = $auth;
 	}
 
 	/**
