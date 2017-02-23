@@ -8,8 +8,7 @@
     "require": {
         "php": "^5.5.9|~7.0",
         "joomla/uri": "~1.0",
-        "joomla/oauth2": "~2.0@dev",
-        "joomla/filesystem": "~1.0"
+        "joomla/oauth2": "~2.0@dev"
     },
     "require-dev": {
         "joomla/input": "~1.0",
