@@ -40,7 +40,7 @@ abstract class Embed
 	public function __construct($options = array(), Uri $uri = null)
 	{
 		$this->options = $options;
-		$this->uri = $uri ? $uri : new Uri;
+		$this->uri = $uri ? $uri : JUri::getInstance();
 	}
 
 	/**
