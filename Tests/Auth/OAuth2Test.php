@@ -12,13 +12,14 @@ use Joomla\Http\Http;
 use Joomla\Input\Input;
 use Joomla\OAuth2\Client;
 use Joomla\Registry\Registry;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for \Joomla\Google\Auth\OAuth2
  *
  * @since  1.0
  */
-class OAuth2Test extends \PHPUnit_Framework_TestCase
+class OAuth2Test extends TestCase
 {
 	/**
 	 * Options for the Client object.

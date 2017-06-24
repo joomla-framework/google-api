@@ -10,11 +10,12 @@ use Joomla\Google\Embed\Maps;
 use Joomla\Http\Http;
 use Joomla\Registry\Registry;
 use Joomla\Uri\Uri;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for \Joomla\Google\Embed\Maps
  */
-class MapsTest extends \PHPUnit_Framework_TestCase
+class MapsTest extends TestCase
 {
 	/**
 	 * Options for the OAuth client.

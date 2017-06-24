@@ -9,11 +9,12 @@ namespace Joomla\Google\Tests\Embed;
 use Joomla\Google\Embed\Analytics;
 use Joomla\Registry\Registry;
 use Joomla\Uri\Uri;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test class for \Joomla\Google\Embed\Analytics
  */
-class AnalyticsTest extends \PHPUnit_Framework_TestCase
+class AnalyticsTest extends TestCase
 {
 	/**
 	 * Options for the OAuth client.

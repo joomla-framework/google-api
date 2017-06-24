@@ -12,13 +12,14 @@ use Joomla\Google\Auth\OAuth2;
 use Joomla\Registry\Registry;
 use Joomla\Http\Http;
 use Joomla\Input\Input;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Base test case for Google object tests.
  *
  * @since  1.0
  */
-abstract class GoogleTestCase extends \PHPUnit_Framework_TestCase
+abstract class GoogleTestCase extends TestCase
 {
 	/**
 	 * @var    Registry  Options for the Client object.
@@ -67,7 +68,12 @@ abstract class GoogleTestCase extends \PHPUnit_Framework_TestCase
 		$_SERVER['SCRIPT_NAME'] = '/index.php';
 
 		$this->options = new Registry;
-		$this->http = $this->getMock('Joomla\\Http\\Http', array('head', 'get', 'delete', 'trace', 'post', 'put', 'patch'), array($this->options));
+
+		$this->http = $this->getMockBuilder('Joomla\\Http\\Http')
+			->setMethods(array('head', 'get', 'delete', 'trace', 'post', 'put', 'patch'))
+			->setConstructorArgs(array($this->options))
+			->getMock();
+
 		$this->input = new Input;
 		$this->application = $this->getMockBuilder('Joomla\\Application\\AbstractWebApplication')->getMock();
 		$this->oauth = new Client($this->options, $this->http, $this->input, $this->application);

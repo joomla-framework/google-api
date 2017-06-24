@@ -12,7 +12,7 @@ use Joomla\Google\Tests\PicasaTestCase;
 /**
  * Test class for \Joomla\Google\Data\Picasa\Album
  */
-class JGoogleDataPicasaAlbumTest extends PicasaTestCase
+class AlbumTest extends PicasaTestCase
 {
 	/**
 	 * The XML data for the album.
@@ -218,9 +218,7 @@ class JGoogleDataPicasaAlbumTest extends PicasaTestCase
 	/**
 	 * Tests the listPhotos method with wrong XML
 	 *
-	 * @group	JGoogle
-	 * @expectedException UnexpectedValueException
-	 * @return void
+	 * @expectedException  \UnexpectedValueException
 	 */
 	public function testListPhotosException()
 	{
@@ -250,9 +248,7 @@ class JGoogleDataPicasaAlbumTest extends PicasaTestCase
 	/**
 	 * Tests the upload method with an unknown file type
 	 *
-	 * @group	JGoogle
-	 * @expectedException RuntimeException
-	 * @return void
+	 * @expectedException  \RuntimeException
 	 */
 	public function testUploadUnknown()
 	{
@@ -262,9 +258,7 @@ class JGoogleDataPicasaAlbumTest extends PicasaTestCase
 	/**
 	 * Tests the upload method with an invalid file
 	 *
-	 * @group	JGoogle
-	 * @expectedException PHPUnit_Framework_Error_Warning
-	 * @return void
+	 * @expectedException  \RuntimeException
 	 */
 	public function testUploadFake()
 	{
