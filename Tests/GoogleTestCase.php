@@ -75,7 +75,7 @@ abstract class GoogleTestCase extends TestCase
 			->getMock();
 
 		$this->input = new Input;
-		$this->application = $this->getMockBuilder('Joomla\\Application\\AbstractWebApplication')->getMock();
+		$this->application = $this->getMockForAbstractClass('Joomla\\Application\\AbstractWebApplication');
 		$this->oauth = new Client($this->options, $this->http, $this->input, $this->application);
 		$this->auth = new OAuth2($this->options, $this->oauth);
 

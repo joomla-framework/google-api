@@ -86,7 +86,7 @@ class OAuth2Test extends TestCase
 			->getMock();
 
 		$this->input = new Input;
-		$this->application = $this->getMockBuilder('Joomla\\Application\\AbstractWebApplication')->getMock();
+		$this->application = $this->getMockForAbstractClass('Joomla\\Application\\AbstractWebApplication');
 		$this->oauth = new Client($this->options, $this->http, $this->input, $this->application);
 		$this->object = new OAuth2($this->options, $this->oauth);
 	}
