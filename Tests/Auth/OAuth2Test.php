@@ -6,46 +6,60 @@
 
 namespace Joomla\Google\Tests;
 
+use Joomla\Application\AbstractWebApplication;
 use Joomla\Google\Auth\OAuth2;
-use Joomla\OAuth2\Client;
+use Joomla\Http\Http;
 use Joomla\Input\Input;
+use Joomla\OAuth2\Client;
 use Joomla\Registry\Registry;
-use Joomla\Test\WebInspector;
+use PHPUnit\Framework\TestCase;
 
 /**
- * Test class for JGoogleAuthOauth2Test .
+ * Test class for \Joomla\Google\Auth\OAuth2
  *
  * @since  1.0
  */
-class JGoogleAuthOauth2Test extends \PHPUnit_Framework_TestCase
+class OAuth2Test extends TestCase
 {
 	/**
-	 * @var  Registry  Options for the Client object.
+	 * Options for the Client object.
+	 *
+	 * @var  Registry
 	 */
 	protected $options;
 
 	/**
-	 * @var  object  Mock client object.
+	 * Mock client object.
+	 *
+	 * @var  Http|\PHPUnit_Framework_MockObject_MockObject
 	 */
 	protected $http;
 
 	/**
-	 * @var  Input  The input object to use in retrieving GET/POST data.
+	 * The input object to use in retrieving GET/POST data.
+	 *
+	 * @var  Input
 	 */
 	protected $input;
 
 	/**
-	 * @var  Client  The OAuth client for sending requests to Google.
+	 * The OAuth client for sending requests to Google.
+	 *
+	 * @var  Client
 	 */
 	protected $oauth;
 
 	/**
-	 * @var  WebInspector  The application object to send HTTP headers for redirects.
+	 * The application object to send HTTP headers for redirects.
+	 *
+	 * @var  AbstractWebApplication|\PHPUnit_Framework_MockObject_MockObject
 	 */
 	protected $application;
 
 	/**
-	 * @var  OAuth2  Object under test.
+	 * Object under test.
+	 *
+	 * @var  OAuth2
 	 */
 	protected $object;
 
@@ -53,8 +67,7 @@ class JGoogleAuthOauth2Test extends \PHPUnit_Framework_TestCase
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
 	 *
-	 * @access protected
-	 * @return void
+	 * @return  void
 	 */
 	protected function setUp()
 	{
@@ -66,18 +79,20 @@ class JGoogleAuthOauth2Test extends \PHPUnit_Framework_TestCase
 		$_SERVER['SCRIPT_NAME'] = '/index.php';
 
 		$this->options = new Registry;
-		$this->http = $this->getMock('Joomla\\Http\\Http', array('head', 'get', 'delete', 'trace', 'post', 'put', 'patch'), array($this->options));
+
+		$this->http = $this->getMockBuilder('Joomla\\Http\\Http')
+			->setMethods(array('head', 'get', 'delete', 'trace', 'post', 'put', 'patch'))
+			->setConstructorArgs(array($this->options))
+			->getMock();
+
 		$this->input = new Input;
-		$this->application = new WebInspector;
+		$this->application = $this->getMockForAbstractClass('Joomla\\Application\\AbstractWebApplication');
 		$this->oauth = new Client($this->options, $this->http, $this->input, $this->application);
 		$this->object = new OAuth2($this->options, $this->oauth);
 	}
 
 	/**
 	 * Tests the auth method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testAuth()
 	{
@@ -87,7 +102,6 @@ class JGoogleAuthOauth2Test extends \PHPUnit_Framework_TestCase
 		$this->object->setOption('sendheaders', true);
 
 		$this->object->authenticate();
-		$this->assertEquals(0, $this->application->closed);
 
 		$this->object->setOption('clientsecret', 'jeDs8rKw_jDJW8MMf-ff8ejs');
 		$this->input->set('code', '4/wEr_dK8SDkjfpwmc98KejfiwJP-f4wm.kdowmnr82jvmeisjw94mKFIJE48mcEM');
@@ -101,9 +115,6 @@ class JGoogleAuthOauth2Test extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the isauth method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testIsAuth()
 	{
@@ -126,9 +137,6 @@ class JGoogleAuthOauth2Test extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the auth method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testQuery()
 	{
@@ -151,9 +159,6 @@ class JGoogleAuthOauth2Test extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the googlize method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGooglize()
 	{
@@ -175,9 +180,6 @@ class JGoogleAuthOauth2Test extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the setOption method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSetOption()
 	{
@@ -191,9 +193,6 @@ class JGoogleAuthOauth2Test extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the getOption method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetOption()
 	{
@@ -215,8 +214,6 @@ class JGoogleAuthOauth2Test extends \PHPUnit_Framework_TestCase
  * @param   integer  $timeout  Read timeout in seconds.
  *
  * @return  object
- *
- * @since   1.0
  */
 function jsonGrantOauthCallback($url, $data, array $headers = null, $timeout = null)
 {
@@ -238,8 +235,6 @@ function jsonGrantOauthCallback($url, $data, array $headers = null, $timeout = n
  * @param   integer  $timeout  Read timeout in seconds.
  *
  * @return  object
- *
- * @since   1.0
  */
 function queryOauthCallback($url, $data, array $headers = null, $timeout = null)
 {
@@ -260,8 +255,6 @@ function queryOauthCallback($url, $data, array $headers = null, $timeout = null)
  * @param   integer  $timeout  Read timeout in seconds.
  *
  * @return  object
- *
- * @since   1.0
  */
 function getOauthCallback($url, array $headers = null, $timeout = null)
 {

@@ -388,6 +388,11 @@ class Album extends Data
 				throw new \RuntimeException("Inappropriate file type.");
 			}
 
+			if (!file_exists($file))
+			{
+				throw new \RuntimeException("File not found.");
+			}
+
 			if (!($data = file_get_contents($file)))
 			{
 				throw new \RuntimeException("Cannot access file: `$file`");

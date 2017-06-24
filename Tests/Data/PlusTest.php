@@ -4,21 +4,20 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace Joomla\Google\Tests;
+namespace Joomla\Google\Tests\Data;
 
 use Joomla\Google\Data\Plus;
-
-require_once __DIR__ . '/case/GoogleTestCase.php';
+use Joomla\Google\Tests\GoogleTestCase;
 
 /**
- * Test class for JGoogleDataPlus.
- *
- * @since  1.0
+ * Test class for \Joomla\Google\Data\Plus
  */
-class JGoogleDataPlusTest extends GoogleTestCase
+class PlusTest extends GoogleTestCase
 {
 	/**
-	 * @var    JGoogleDataPlus  Object under test.
+	 * Object under test.
+	 *
+	 * @var  Plus
 	 */
 	protected $object;
 
@@ -26,8 +25,7 @@ class JGoogleDataPlusTest extends GoogleTestCase
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
 	 *
-	 * @access protected
-	 * @return void
+	 * @return  void
 	 */
 	protected function setUp()
 	{
@@ -38,17 +36,6 @@ class JGoogleDataPlusTest extends GoogleTestCase
 		$this->object->setOption('clientid', '01234567891011.apps.googleusercontent.com');
 		$this->object->setOption('clientsecret', 'jeDs8rKw_jDJW8MMf-ff8ejs');
 		$this->object->setOption('redirecturi', 'http://localhost/oauth');
-	}
-
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 * @return void
-	 */
-	protected function tearDown()
-	{
 	}
 
 	/**

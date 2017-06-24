@@ -6,19 +6,17 @@
 
 namespace Joomla\Google\Tests;
 
-require_once __DIR__ . '/case/GoogleTestCase.php';
-
 use Joomla\Google\Google;
 
 /**
- * Test class for Google.
- *
- * @since  1.0
+ * Test class for \Joomla\Google\Google.
  */
 class GoogleTest extends GoogleTestCase
 {
 	/**
-	 * @var    JGoogle  Object under test.
+	 * Object under test.
+	 *
+	 * @var  Google
 	 */
 	protected $object;
 
@@ -26,8 +24,7 @@ class GoogleTest extends GoogleTestCase
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
 	 *
-	 * @access protected
-	 * @return void
+	 * @return  void
 	 */
 	protected function setUp()
 	{
@@ -38,9 +35,6 @@ class GoogleTest extends GoogleTestCase
 
 	/**
 	 * Tests the magic __get method - data
-	 *
-	 * @group   Google
-	 * @return  void
 	 */
 	public function test__GetData()
 	{
@@ -66,9 +60,6 @@ class GoogleTest extends GoogleTestCase
 
 	/**
 	 * Tests the magic __get method - embed
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function test__GetEmbed()
 	{
@@ -84,9 +75,6 @@ class GoogleTest extends GoogleTestCase
 
 	/**
 	 * Tests the setOption method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSetOption()
 	{
@@ -100,9 +88,6 @@ class GoogleTest extends GoogleTestCase
 
 	/**
 	 * Tests the getOption method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetOption()
 	{

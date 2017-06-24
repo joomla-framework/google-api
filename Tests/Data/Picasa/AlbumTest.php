@@ -4,26 +4,27 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace Joomla\Google\Tests;
+namespace Joomla\Google\Tests\Data\Picasa;
 
 use Joomla\Google\Data\Picasa\Album;
-
-require_once __DIR__ . '/case/GoogleTestCase.php';
+use Joomla\Google\Tests\PicasaTestCase;
 
 /**
- * Test class for JGoogleDataPicasa.
- *
- * @since  1.0
+ * Test class for \Joomla\Google\Data\Picasa\Album
  */
-class JGoogleDataPicasaAlbumTest extends GoogleTestCase
+class AlbumTest extends PicasaTestCase
 {
 	/**
-	 * @var    string  The XML data for the album.
+	 * The XML data for the album.
+	 *
+	 * @var  string
 	 */
 	protected $xml;
 
 	/**
-	 * @var    JGoogleDataPicasaAlbum  Object under test.
+	 * Object under test.
+	 *
+	 * @var  Album
 	 */
 	protected $object;
 
@@ -31,14 +32,13 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
 	 *
-	 * @access protected
-	 * @return void
+	 * @return  void
 	 */
 	protected function setUp()
 	{
 		parent::setUp();
 
-		$this->xml = new \SimpleXMLElement(file_get_contents(__DIR__ . '/album.txt'));
+		$this->xml = new \SimpleXMLElement(file_get_contents(__DIR__ . '/../../Stubs/album.txt'));
 		$this->object = new Album($this->xml, $this->options, $this->auth);
 
 		$this->object->setOption('clientid', '01234567891011.apps.googleusercontent.com');
@@ -47,21 +47,7 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 	}
 
 	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 *
-	 * @access protected
-	 * @return void
-	 */
-	protected function tearDown()
-	{
-	}
-
-	/**
 	 * Tests the auth method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testAuth()
 	{
@@ -70,9 +56,6 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 
 	/**
 	 * Tests the isauth method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testIsAuth()
 	{
@@ -81,22 +64,16 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 
 	/**
 	 * Tests the delete method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testDelete()
 	{
-		$this->http->expects($this->once())->method('delete')->will($this->returnCallback('Joomla\\Google\\Tests\\emptyPicasaCallback'));
+		$this->http->expects($this->once())->method('delete')->will($this->returnCallback(array($this, 'emptyPicasaCallback')));
 		$result = $this->object->delete();
 		$this->assertTrue($result);
 	}
 
 	/**
 	 * Tests the getLink method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetLink()
 	{
@@ -110,9 +87,6 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 
 	/**
 	 * Tests the getTitle method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetTitle()
 	{
@@ -122,9 +96,6 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 
 	/**
 	 * Tests the getSummary method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetSummary()
 	{
@@ -134,9 +105,6 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 
 	/**
 	 * Tests the getLocation method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetLocation()
 	{
@@ -146,9 +114,6 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 
 	/**
 	 * Tests the getAccess method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetAccess()
 	{
@@ -158,9 +123,6 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 
 	/**
 	 * Tests the getTime method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetTime()
 	{
@@ -170,9 +132,6 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 
 	/**
 	 * Tests the setTitle method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSetTitle()
 	{
@@ -182,9 +141,6 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 
 	/**
 	 * Tests the setSummary method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSetSummary()
 	{
@@ -194,9 +150,6 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 
 	/**
 	 * Tests the setLocation method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSetLocation()
 	{
@@ -206,9 +159,6 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 
 	/**
 	 * Tests the setAccess method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSetAccess()
 	{
@@ -218,9 +168,6 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 
 	/**
 	 * Tests the setTime method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSetTime()
 	{
@@ -230,13 +177,10 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 
 	/**
 	 * Tests the save method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSave()
 	{
-		$this->http->expects($this->exactly(2))->method('put')->will($this->returnCallback('Joomla\\Google\\Tests\\dataPicasaAlbumCallback'));
+		$this->http->expects($this->exactly(2))->method('put')->will($this->returnCallback(array($this, 'dataPicasaAlbumCallback')));
 		$this->object->setTitle('New Title');
 		$this->object->save();
 		$this->object->save(true);
@@ -244,26 +188,20 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 
 	/**
 	 * Tests the refresh method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testRefresh()
 	{
-		$this->http->expects($this->once())->method('get')->will($this->returnCallback('Joomla\\Google\\Tests\\picasaAlbumCallback'));
+		$this->http->expects($this->once())->method('get')->will($this->returnCallback(array($this, 'picasaAlbumCallback')));
 		$result = $this->object->refresh();
 		$this->assertEquals(get_class($result), 'Joomla\\Google\\Data\\Picasa\\Album');
 	}
 
 	/**
 	 * Tests the listPhotos method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testListPhotos()
 	{
-		$this->http->expects($this->once())->method('get')->will($this->returnCallback('Joomla\\Google\\Tests\\picasaPhotolistCallback'));
+		$this->http->expects($this->once())->method('get')->will($this->returnCallback(array($this, 'picasaPhotolistCallback')));
 		$results = $this->object->listPhotos();
 
 		$this->assertEquals(count($results), 2);
@@ -280,67 +218,55 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 	/**
 	 * Tests the listPhotos method with wrong XML
 	 *
-	 * @group	JGoogle
-	 * @expectedException UnexpectedValueException
-	 * @return void
+	 * @expectedException  \UnexpectedValueException
 	 */
 	public function testListPhotosException()
 	{
-		$this->http->expects($this->once())->method('get')->will($this->returnCallback('Joomla\\Google\\Tests\\picasaBadXmlCallback'));
+		$this->http->expects($this->once())->method('get')->will($this->returnCallback(array($this, 'picasaBadXmlCallback')));
 		$this->object->listPhotos();
 	}
 
 	/**
 	 * Tests the upload method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testUpload()
 	{
-		$this->http->expects($this->exactly(4))->method('post')->will($this->returnCallback('Joomla\\Google\\Tests\\dataPicasaUploadCallback'));
-		$result = $this->object->upload(__DIR__ . '/logo.png');
+		$this->http->expects($this->exactly(4))->method('post')->will($this->returnCallback(array($this, 'dataPicasaUploadCallback')));
+		$result = $this->object->upload(__DIR__ . '/../../Stubs/logo.png');
 		$this->assertEquals(get_class($result), 'Joomla\\Google\\Data\\Picasa\\Photo');
 
-		$result = $this->object->upload(__DIR__ . '/logo.gif');
+		$result = $this->object->upload(__DIR__ . '/../../Stubs/logo.gif');
 		$this->assertEquals(get_class($result), 'Joomla\\Google\\Data\\Picasa\\Photo');
 
-		$result = $this->object->upload(__DIR__ . '/logo.jpg');
+		$result = $this->object->upload(__DIR__ . '/../../Stubs/logo.jpg');
 		$this->assertEquals(get_class($result), 'Joomla\\Google\\Data\\Picasa\\Photo');
 
-		$result = $this->object->upload(__DIR__ . '/logo.bmp');
+		$result = $this->object->upload(__DIR__ . '/../../Stubs/logo.bmp');
 		$this->assertEquals(get_class($result), 'Joomla\\Google\\Data\\Picasa\\Photo');
 	}
 
 	/**
 	 * Tests the upload method with an unknown file type
 	 *
-	 * @group	JGoogle
-	 * @expectedException RuntimeException
-	 * @return void
+	 * @expectedException  \RuntimeException
 	 */
 	public function testUploadUnknown()
 	{
-		$result = $this->object->upload(__DIR__ . '/photo.txt');
+		$result = $this->object->upload(__DIR__ . '/../../Stubs/photo.txt');
 	}
 
 	/**
 	 * Tests the upload method with an invalid file
 	 *
-	 * @group	JGoogle
-	 * @expectedException PHPUnit_Framework_Error_Warning
-	 * @return void
+	 * @expectedException  \RuntimeException
 	 */
 	public function testUploadFake()
 	{
-		$result = $this->object->upload(__DIR__ . '/fakephoto.png');
+		$result = $this->object->upload(__DIR__ . '/../../Stubs/fakephoto.png');
 	}
 
 	/**
 	 * Tests the setOption method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSetOption()
 	{
@@ -354,9 +280,6 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 
 	/**
 	 * Tests the getOption method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetOption()
 	{
@@ -370,9 +293,6 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 
 	/**
 	 * Tests that all functions properly return false
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testFalse()
 	{
@@ -382,7 +302,7 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 		$functions['save'] = array();
 		$functions['refresh'] = array();
 		$functions['listPhotos'] = array();
-		$functions['upload'] = array(__DIR__ . '/logo.png');
+		$functions['upload'] = array(__DIR__ . '/../../Stubs/logo.png');
 
 		foreach ($functions as $function => $params)
 		{
@@ -392,22 +312,19 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 
 	/**
 	 * Tests that all functions properly return Exceptions
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testExceptions()
 	{
-		$this->http->expects($this->atLeastOnce())->method('get')->will($this->returnCallback('Joomla\\Google\\Tests\\picasaExceptionCallback'));
-		$this->http->expects($this->atLeastOnce())->method('delete')->will($this->returnCallback('Joomla\\Google\\Tests\\picasaExceptionCallback'));
-		$this->http->expects($this->atLeastOnce())->method('post')->will($this->returnCallback('Joomla\\Google\\Tests\\picasaDataExceptionCallback'));
-		$this->http->expects($this->atLeastOnce())->method('put')->will($this->returnCallback('Joomla\\Google\\Tests\\picasaDataExceptionCallback'));
+		$this->http->expects($this->atLeastOnce())->method('get')->will($this->returnCallback(array($this, 'picasaExceptionCallback')));
+		$this->http->expects($this->atLeastOnce())->method('delete')->will($this->returnCallback(array($this, 'picasaExceptionCallback')));
+		$this->http->expects($this->atLeastOnce())->method('post')->will($this->returnCallback(array($this, 'picasaDataExceptionCallback')));
+		$this->http->expects($this->atLeastOnce())->method('put')->will($this->returnCallback(array($this, 'picasaDataExceptionCallback')));
 
 		$functions['delete'] = array();
 		$functions['save'] = array();
 		$functions['refresh'] = array();
 		$functions['listPhotos'] = array();
-		$functions['upload'] = array(__DIR__ . '/logo.png');
+		$functions['upload'] = array(__DIR__ . '/../../Stubs/logo.png');
 
 		foreach ($functions as $function => $params)
 		{
@@ -425,71 +342,45 @@ class JGoogleDataPicasaAlbumTest extends GoogleTestCase
 			$this->assertTrue($exception);
 		}
 	}
-}
 
-/**
- * Dummy method
- *
- * @param   string   $url      Path to the resource.
- * @param   array    $headers  An array of name-value pairs to include in the header of the request.
- * @param   integer  $timeout  Read timeout in seconds.
- *
- * @return  JHttpResponse
- *
- * @since   1.0
- */
-function emptyPicasaCallback($url, array $headers = null, $timeout = null)
-{
-	$response = new \stdClass;
+	/**
+	 * Dummy method
+	 *
+	 * @param   string   $url      Path to the resource.
+	 * @param   mixed    $data     Either an associative array or a string to be sent with the request.
+	 * @param   array    $headers  An array of name-value pairs to include in the header of the request.
+	 * @param   integer  $timeout  Read timeout in seconds.
+	 *
+	 * @return  object
+	 */
+	public function dataPicasaUploadCallback($url, $data, array $headers = null, $timeout = null)
+	{
+		$response = new \stdClass;
 
-	$response->code = 200;
-	$response->headers = array('Content-Type' => 'application/atom+xml');
-	$response->body = '';
+		$response->code = 200;
+		$response->headers = array('Content-Type' => 'application/atom+xml');
+		$response->body = file_get_contents(__DIR__ . '/../../Stubs/photo.txt');
 
-	return $response;
-}
+		return $response;
+	}
 
-/**
- * Dummy method
- *
- * @param   string   $url      Path to the resource.
- * @param   array    $headers  An array of name-value pairs to include in the header of the request.
- * @param   integer  $timeout  Read timeout in seconds.
- *
- * @return  JHttpResponse
- *
- * @since   1.0
- */
-function picasaPhotolistCallback($url, array $headers = null, $timeout = null)
-{
-	$response = new \stdClass;
+	/**
+	 * Dummy method
+	 *
+	 * @param   string   $url      Path to the resource.
+	 * @param   array    $headers  An array of name-value pairs to include in the header of the request.
+	 * @param   integer  $timeout  Read timeout in seconds.
+	 *
+	 * @return  object
+	 */
+	public function picasaPhotolistCallback($url, array $headers = null, $timeout = null)
+	{
+		$response = new \stdClass;
 
-	$response->code = 200;
-	$response->headers = array('Content-Type' => 'application/atom+xml');
-	$response->body = file_get_contents(__DIR__ . '/photolist.txt');
+		$response->code = 200;
+		$response->headers = array('Content-Type' => 'application/atom+xml');
+		$response->body = file_get_contents(__DIR__ . '/../../Stubs/photolist.txt');
 
-	return $response;
-}
-
-/**
- * Dummy method
- *
- * @param   string   $url      Path to the resource.
- * @param   mixed    $data     Either an associative array or a string to be sent with the request.
- * @param   array    $headers  An array of name-value pairs to include in the header of the request.
- * @param   integer  $timeout  Read timeout in seconds.
- *
- * @return  JHttpResponse
- *
- * @since   1.0
- */
-function dataPicasaUploadCallback($url, $data, array $headers = null, $timeout = null)
-{
-	$response = new \stdClass;
-
-	$response->code = 200;
-	$response->headers = array('Content-Type' => 'application/atom+xml');
-	$response->body = file_get_contents(__DIR__ . '/photo.txt');
-
-	return $response;
+		return $response;
+	}
 }
