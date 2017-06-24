@@ -4,33 +4,34 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace Joomla\Google\Tests;
+namespace Joomla\Google\Tests\Data\Plus;
 
 use Joomla\Google\Data\Plus\People;
-
-require_once __DIR__ . '/case/GoogleTestCase.php';
+use Joomla\Google\Tests\GoogleTestCase;
 
 /**
- * Test class for JGoogleDataPlusPeople.
- *
- * @since  1.0
+ * Test class for \Joomla\Google\Data\Plus\People
  */
-class JGoogleDataPlusPeopleTest extends GoogleTestCase
+class PeopleTest extends GoogleTestCase
 {
 	/**
-	 * @var    JGoogleDataPlusPeople  Object under test.
+	 * Object under test.
+	 *
+	 * @var  People
 	 */
 	protected $object;
 
 	/**
-	 * @var    string  Sample JSON string.
-	 * @since  1.0
+	 * Sample JSON string.
+	 *
+	 * @var  string
 	 */
 	protected $sampleString = '{"a":1,"b":2,"c":3,"d":4,"e":5}';
 
 	/**
-	 * @var    string  Sample JSON error message.
-	 * @since  1.0
+	 * Sample JSON error message.
+	 *
+	 * @var  string
 	 */
 	protected $errorString = '{"error": {"message": "Generic Error."}}';
 
@@ -38,8 +39,7 @@ class JGoogleDataPlusPeopleTest extends GoogleTestCase
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
 	 *
-	 * @access protected
-	 * @return void
+	 * @return  void
 	 */
 	protected function setUp()
 	{
@@ -54,9 +54,6 @@ class JGoogleDataPlusPeopleTest extends GoogleTestCase
 
 	/**
 	 * Tests the auth method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testAuth()
 	{
@@ -65,9 +62,6 @@ class JGoogleDataPlusPeopleTest extends GoogleTestCase
 
 	/**
 	 * Tests the isauth method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testIsAuth()
 	{

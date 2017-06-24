@@ -4,34 +4,43 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-use Joomla\Google\Embed\Maps as EmbedMaps;
-use Joomla\Uri\Uri;
+namespace Joomla\Google\Tests\Embed;
+
+use Joomla\Google\Embed\Maps;
+use Joomla\Http\Http;
 use Joomla\Registry\Registry;
+use Joomla\Uri\Uri;
 
 /**
- * Test class for JGoogle.
- *
- * @since  1.0
+ * Test class for \Joomla\Google\Embed\Maps
  */
-class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
+class MapsTest extends \PHPUnit_Framework_TestCase
 {
 	/**
-	 * @var    Registry  Options for the JOAuth2Client object.
+	 * Options for the OAuth client.
+	 *
+	 * @var  Registry
 	 */
 	protected $options;
 
 	/**
-	 * @var    Uri  URI of the page being rendered.
+	 * URI of the page being rendered.
+	 *
+	 * @var  Uri
 	 */
 	protected $uri;
 
 	/**
-	 * @var    Joomla\Http\Http  Mock client object.
+	 * Mock client object.
+	 *
+	 * @var  Http|\PHPUnit_Framework_MockObject_MockObject
 	 */
 	protected $http;
 
 	/**
-	 * @var    EmbedMaps  Object under test.
+	 * Object under test.
+	 *
+	 * @var  Maps
 	 */
 	protected $object;
 
@@ -39,8 +48,7 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
 	 *
-	 * @access protected
-	 * @return void
+	 * @return  void
 	 */
 	protected function setUp()
 	{
@@ -48,16 +56,17 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 		$this->options = new Registry;
 
-		$this->http = $this->getMock('Joomla\\Http\\Http', array('get'), array($this->options));
+		$this->http = $this->getMockBuilder('Joomla\\Http\\Http')
+			->setMethods(array('get'))
+			->setConstructorArgs(array($this->options))
+			->getMock();
+
 		$this->uri = new Uri;
-		$this->object = new EmbedMaps($this->options, $this->uri, $this->http);
+		$this->object = new Maps($this->options, $this->uri, $this->http);
 	}
 
 	/**
 	 * Tests the getKey method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetKey()
 	{
@@ -68,9 +77,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the setKey method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSetKey()
 	{
@@ -81,9 +87,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the getMapId method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetMapId()
 	{
@@ -97,9 +100,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the setMapId method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSetMapId()
 	{
@@ -110,9 +110,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the getMapClass method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetMapClass()
 	{
@@ -126,9 +123,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the setMapClass method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSetMapClass()
 	{
@@ -139,9 +133,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the getMapStyle method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetMapStyle()
 	{
@@ -155,9 +146,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the setMapStyle method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSetMapStyle()
 	{
@@ -168,9 +156,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the getMapType method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetMapType()
 	{
@@ -184,9 +169,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the setMapType method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSetMapType()
 	{
@@ -197,9 +179,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the getAdditionalMapOptions method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetAdditionalMapOptions()
 	{
@@ -213,9 +192,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the setAdditionalMapOptions method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSetAdditionalMapOptions()
 	{
@@ -226,9 +202,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the getAdditionalJavascript method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetAdditionalJavascript()
 	{
@@ -242,9 +215,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the setAdditionalJavascript method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSetAdditionalJavascript()
 	{
@@ -255,9 +225,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the getZoom method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetZoom()
 	{
@@ -271,9 +238,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the setZoom method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSetZoom()
 	{
@@ -284,9 +248,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the getCenter method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetCenter()
 	{
@@ -300,13 +261,10 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the setCenter method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSetCenter()
 	{
-		$this->http->expects($this->exactly(5))->method('get')->will($this->returnCallback('mapsGeocodeCallback'));
+		$this->http->expects($this->exactly(5))->method('get')->will($this->returnCallback(array($this, 'mapsGeocodeCallback')));
 
 		$reference[] = array('loc' => array(37, -122), 'title' => '37, -122', 'options' => array());
 		$this->object->setCenter(array(37, -122));
@@ -343,13 +301,10 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the addMarker method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testAddMarker()
 	{
-		$this->http->expects($this->exactly(3))->method('get')->will($this->returnCallback('mapsGeocodeCallback'));
+		$this->http->expects($this->exactly(3))->method('get')->will($this->returnCallback(array($this, 'mapsGeocodeCallback')));
 
 		$marker = $this->object->addMarker(array(37, -122));
 		$this->assertEquals($marker, array('loc' => array(37, -122), 'title' => '37, -122', 'options' => array()));
@@ -366,9 +321,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the listMarkers method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testListMarkers()
 	{
@@ -382,13 +334,10 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the deleteMarkers method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testDeleteMarkers()
 	{
-		$this->http->expects($this->exactly(3))->method('get')->will($this->returnCallback('mapsGeocodeCallback'));
+		$this->http->expects($this->exactly(3))->method('get')->will($this->returnCallback(array($this, 'mapsGeocodeCallback')));
 
 		$marker0 = $this->object->addMarker(array(37, -122));
 		$marker1 = $this->object->addMarker('Palo Alto');
@@ -421,9 +370,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the isAsync method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testIsAsync()
 	{
@@ -441,9 +387,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the useAsync method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testUseAsync()
 	{
@@ -454,9 +397,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the useAsync method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testUseSync()
 	{
@@ -467,9 +407,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the getAsyncCallback method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetAsyncCallback()
 	{
@@ -483,9 +420,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the setAsyncCallback method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSetAsyncCallback()
 	{
@@ -496,9 +430,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the hasSensor method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testHasSensor()
 	{
@@ -516,9 +447,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the useSensor method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testUseSensor()
 	{
@@ -529,9 +457,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the noSensor method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testNoSensor()
 	{
@@ -543,9 +468,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the getAutoload method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetAutoload()
 	{
@@ -559,9 +481,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the setAutoload method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSetAutoload()
 	{
@@ -572,13 +491,10 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the getHeader method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetHeader()
 	{
-		$this->http->expects($this->once())->method('get')->will($this->returnCallback('mapsGeocodeCallback'));
+		$this->http->expects($this->once())->method('get')->will($this->returnCallback(array($this, 'mapsGeocodeCallback')));
 
 		$this->object->useAsync();
 		$this->object->setAsyncCallback('asynchronouscallback');
@@ -642,9 +558,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the getBody method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetBody()
 	{
@@ -659,9 +572,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the echoHeader method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testEchoHeader()
 	{
@@ -674,9 +584,6 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the echoBody method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testEchoBody()
 	{
@@ -687,13 +594,10 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the geocodeAddress method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGeocodeAddress()
 	{
-		$this->http->expects($this->exactly(2))->method('get')->will($this->returnCallback('mapsGeocodeCallback'));
+		$this->http->expects($this->exactly(2))->method('get')->will($this->returnCallback(array($this, 'mapsGeocodeCallback')));
 
 		$geocode = $this->object->geocodeAddress('Palo Alto');
 		$this->assertEquals($geocode['geometry']['location'], array('lat' => 37.44188340, 'lng' => -122.14301950));
@@ -711,7 +615,7 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testGeocodeAddress400()
 	{
-		$this->http->expects($this->once())->method('get')->will($this->returnCallback('mapsGeocode400Callback'));
+		$this->http->expects($this->once())->method('get')->will($this->returnCallback(array($this, 'mapsGeocode400Callback')));
 		$this->object->geocodeAddress('Palo Alto');
 	}
 
@@ -724,93 +628,87 @@ class JGoogleEmbedMapsTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testGeocodeAddressBadJson()
 	{
-		$this->http->expects($this->once())->method('get')->will($this->returnCallback('mapsGeocodeBadJsonCallback'));
+		$this->http->expects($this->once())->method('get')->will($this->returnCallback(array($this, 'mapsGeocodeBadJsonCallback')));
 		$this->object->geocodeAddress('Palo Alto');
 	}
-}
 
-/**
- * Dummy method
- *
- * @param   string   $url      Path to the resource.
- * @param   array    $headers  An array of name-value pairs to include in the header of the request.
- * @param   integer  $timeout  Read timeout in seconds.
- *
- * @return  JHttpResponse
- *
- * @since   1.0
- */
-function mapsGeocodeCallback($url, array $headers = null, $timeout = null)
-{
-	$query = parse_url($url, PHP_URL_QUERY);
-
-	parse_str($query, $params);
-
-	$address = strtolower($params['address']);
-
-	switch ($address)
+	/**
+	 * Dummy method
+	 *
+	 * @param   string   $url      Path to the resource.
+	 * @param   array    $headers  An array of name-value pairs to include in the header of the request.
+	 * @param   integer  $timeout  Read timeout in seconds.
+	 *
+	 * @return  object
+	 */
+	public function mapsGeocodeCallback($url, array $headers = null, $timeout = null)
 	{
-		case 'san francisco':
-		$data = file_get_contents(__DIR__ . '/sanfrancisco.txt');
-		break;
+		$query = parse_url($url, PHP_URL_QUERY);
 
-		case 'palo alto':
-		$data = file_get_contents(__DIR__ . '/paloalto.txt');
-		break;
+		parse_str($query, $params);
 
-		default:
-		$data = "{\n   \"results\" : [],\n   \"status\" : \"ZERO_RESULTS\"\n}\n";
+		$address = strtolower($params['address']);
+
+		switch ($address)
+		{
+			case 'san francisco':
+			$data = file_get_contents(__DIR__ . '/../Stubs/sanfrancisco.txt');
+			break;
+
+			case 'palo alto':
+			$data = file_get_contents(__DIR__ . '/../Stubs/paloalto.txt');
+			break;
+
+			default:
+			$data = "{\n   \"results\" : [],\n   \"status\" : \"ZERO_RESULTS\"\n}\n";
+		}
+
+		$response = new \stdClass;
+
+		$response->code = 200;
+		$response->headers = array('Content-Type' => 'application/json');
+		$response->body = $data;
+
+		return $response;
 	}
 
-	$response = new stdClass;
+	/**
+	 * Dummy method
+	 *
+	 * @param   string   $url      Path to the resource.
+	 * @param   array    $headers  An array of name-value pairs to include in the header of the request.
+	 * @param   integer  $timeout  Read timeout in seconds.
+	 *
+	 * @return  object
+	 */
+	public function mapsGeocode400Callback($url, array $headers = null, $timeout = null)
+	{
+		$response = new \stdClass;
 
-	$response->code = 200;
-	$response->headers = array('Content-Type' => 'application/json');
-	$response->body = $data;
+		$response->code = 400;
+		$response->headers = array('Content-Type' => 'application/json');
+		$response->body = '';
 
-	return $response;
-}
+		return $response;
+	}
 
-/**
- * Dummy method
- *
- * @param   string   $url      Path to the resource.
- * @param   array    $headers  An array of name-value pairs to include in the header of the request.
- * @param   integer  $timeout  Read timeout in seconds.
- *
- * @return  JHttpResponse
- *
- * @since   1.0
- */
-function mapsGeocode400Callback($url, array $headers = null, $timeout = null)
-{
-	$response = new stdClass;
+	/**
+	 * Dummy method
+	 *
+	 * @param   string   $url      Path to the resource.
+	 * @param   array    $headers  An array of name-value pairs to include in the header of the request.
+	 * @param   integer  $timeout  Read timeout in seconds.
+	 *
+	 * @return  object
+	 */
+	public function mapsGeocodeBadJsonCallback($url, array $headers = null, $timeout = null)
+	{
+		$response = new \stdClass;
 
-	$response->code = 400;
-	$response->headers = array('Content-Type' => 'application/json');
-	$response->body = '';
+		$response->code = 200;
+		$response->headers = array('Content-Type' => 'application/json');
+		$response->body = 'BADDATA';
 
-	return $response;
-}
-
-/**
- * Dummy method
- *
- * @param   string   $url      Path to the resource.
- * @param   array    $headers  An array of name-value pairs to include in the header of the request.
- * @param   integer  $timeout  Read timeout in seconds.
- *
- * @return  JHttpResponse
- *
- * @since   1.0
- */
-function mapsGeocodeBadJsonCallback($url, array $headers = null, $timeout = null)
-{
-	$response = new stdClass;
-
-	$response->code = 200;
-	$response->headers = array('Content-Type' => 'application/json');
-	$response->body = 'BADDATA';
-
-	return $response;
+		return $response;
+	}
 }

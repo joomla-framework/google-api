@@ -4,31 +4,35 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace Joomla\Google\Tests;
+namespace Joomla\Google\Tests\Embed;
 
-use Joomla\Google\Embed\Analytics as EmbedAnalytics;
+use Joomla\Google\Embed\Analytics;
 use Joomla\Registry\Registry;
 use Joomla\Uri\Uri;
 
 /**
- * Test class for Joomla\Google\Embed\Analytics.
- *
- * @since  1.0
+ * Test class for \Joomla\Google\Embed\Analytics
  */
-class JGoogleEmbedAnalyticsTest extends \PHPUnit_Framework_TestCase
+class AnalyticsTest extends \PHPUnit_Framework_TestCase
 {
 	/**
-	 * @var    Registry  Options for the JOAuth2Client object.
+	 * Options for the OAuth client.
+	 *
+	 * @var  Registry
 	 */
 	protected $options;
 
 	/**
-	 * @var    Uri  URI of the page being rendered.
+	 * URI of the page being rendered.
+	 *
+	 * @var  Uri
 	 */
 	protected $uri;
 
 	/**
-	 * @var    EmbedAnalytics  Object under test.
+	 * Object under test.
+	 *
+	 * @var  Analytics
 	 */
 	protected $object;
 
@@ -36,8 +40,7 @@ class JGoogleEmbedAnalyticsTest extends \PHPUnit_Framework_TestCase
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
 	 *
-	 * @access protected
-	 * @return void
+	 * @return  void
 	 */
 	protected function setUp()
 	{
@@ -46,14 +49,11 @@ class JGoogleEmbedAnalyticsTest extends \PHPUnit_Framework_TestCase
 		$this->options = new Registry;
 
 		$this->uri = new Uri;
-		$this->object = new EmbedAnalytics($this->options, $this->uri);
+		$this->object = new Analytics($this->options, $this->uri);
 	}
 
 	/**
 	 * Tests the getCode method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetCode()
 	{
@@ -64,9 +64,6 @@ class JGoogleEmbedAnalyticsTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the setCode method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testSetCode()
 	{
@@ -77,9 +74,6 @@ class JGoogleEmbedAnalyticsTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the isAsync method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testIsAsync()
 	{
@@ -97,9 +91,6 @@ class JGoogleEmbedAnalyticsTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the useAsync method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testUseAsync()
 	{
@@ -110,9 +101,6 @@ class JGoogleEmbedAnalyticsTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the useAsync method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testUseSync()
 	{
@@ -123,9 +111,6 @@ class JGoogleEmbedAnalyticsTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the addCall method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testAddCall()
 	{
@@ -135,9 +120,6 @@ class JGoogleEmbedAnalyticsTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the listCalls method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testListCalls()
 	{
@@ -151,9 +133,6 @@ class JGoogleEmbedAnalyticsTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the deleteCalls method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testDeleteCalls()
 	{
@@ -176,9 +155,6 @@ class JGoogleEmbedAnalyticsTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the createCall method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testCreateCall()
 	{
@@ -193,9 +169,6 @@ class JGoogleEmbedAnalyticsTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the addCustomVar method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testAddCustomVar()
 	{
@@ -205,9 +178,6 @@ class JGoogleEmbedAnalyticsTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the createCall method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testCreateCustomVar()
 	{
@@ -217,9 +187,6 @@ class JGoogleEmbedAnalyticsTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the addEvent method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testAddEvent()
 	{
@@ -229,9 +196,6 @@ class JGoogleEmbedAnalyticsTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the createCall method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testCreateEvent()
 	{
@@ -241,9 +205,6 @@ class JGoogleEmbedAnalyticsTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the getHeader method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetHeader()
 	{
@@ -281,9 +242,6 @@ class JGoogleEmbedAnalyticsTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the getBody method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testGetBody()
 	{
@@ -327,9 +285,6 @@ class JGoogleEmbedAnalyticsTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the echoHeader method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testEchoHeader()
 	{
@@ -342,9 +297,6 @@ class JGoogleEmbedAnalyticsTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Tests the echoBody method
-	 *
-	 * @group	JGoogle
-	 * @return void
 	 */
 	public function testEchoBody()
 	{

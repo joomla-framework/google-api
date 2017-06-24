@@ -14,11 +14,11 @@ use Joomla\Http\Http;
 use Joomla\Input\Input;
 
 /**
- * Test case for JGoogle.
+ * Base test case for Google object tests.
  *
  * @since  1.0
  */
-class GoogleTestCase extends \PHPUnit_Framework_TestCase
+abstract class GoogleTestCase extends \PHPUnit_Framework_TestCase
 {
 	/**
 	 * @var    Registry  Options for the Client object.
@@ -79,4 +79,48 @@ class GoogleTestCase extends \PHPUnit_Framework_TestCase
 		$token['expires_in'] = 3600;
 		$this->oauth->setToken($token);
 	}
+}
+
+/**
+ * Dummy method
+ *
+ * @param   string   $url      Path to the resource.
+ * @param   array    $headers  An array of name-value pairs to include in the header of the request.
+ * @param   integer  $timeout  Read timeout in seconds.
+ *
+ * @return  object
+ *
+ * @since   1.0
+ */
+function picasaAlbumCallback($url, array $headers = null, $timeout = null)
+{
+	$response = new \stdClass;
+
+	$response->code = 200;
+	$response->headers = array('Content-Type' => 'text/html');
+	$response->body = file_get_contents(__DIR__ . '/Stubs/album.txt');
+
+	return $response;
+}
+
+/**
+ * Dummy method
+ *
+ * @param   string   $url      Path to the resource.
+ * @param   array    $headers  An array of name-value pairs to include in the header of the request.
+ * @param   integer  $timeout  Read timeout in seconds.
+ *
+ * @return  object
+ *
+ * @since   1.0
+ */
+function picasaBadXmlCallback($url, array $headers = null, $timeout = null)
+{
+	$response = new \stdClass;
+
+	$response->code = 200;
+	$response->headers = array('Content-Type' => 'application/atom+xml');
+	$response->body = '<feed />';
+
+	return $response;
 }
