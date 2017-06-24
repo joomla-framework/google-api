@@ -26,7 +26,7 @@ class Google
 	/**
 	 * The authentication client object to use in sending authenticated HTTP requests.
 	 *
-	 * @var    Auth
+	 * @var    Auth\OAuth2
 	 * @since  1.0
 	 */
 	protected $auth;
@@ -50,8 +50,8 @@ class Google
 	/**
 	 * Constructor.
 	 *
+	 * @param   Auth\OAuth2         $auth     The authentication client object.
 	 * @param   array|\ArrayAccess  $options  Google options object.
-	 * @param   Auth                $auth     The authentication client object.
 	 *
 	 * @since   1.0
 	 */
