@@ -6,11 +6,11 @@
 
 namespace Joomla\Google\Tests;
 
+use Joomla\Application\AbstractWebApplication;
 use Joomla\Google\Auth\OAuth2;
 use Joomla\OAuth2\Client;
 use Joomla\Input\Input;
 use Joomla\Registry\Registry;
-use Joomla\Test\WebInspector;
 
 /**
  * Test class for JGoogleAuthOauth2Test .
@@ -40,7 +40,7 @@ class JGoogleAuthOauth2Test extends \PHPUnit_Framework_TestCase
 	protected $oauth;
 
 	/**
-	 * @var  WebInspector  The application object to send HTTP headers for redirects.
+	 * @var  AbstractWebApplication|\PHPUnit_Framework_MockObject_MockObject  The application object to send HTTP headers for redirects.
 	 */
 	protected $application;
 
@@ -68,7 +68,7 @@ class JGoogleAuthOauth2Test extends \PHPUnit_Framework_TestCase
 		$this->options = new Registry;
 		$this->http = $this->getMock('Joomla\\Http\\Http', array('head', 'get', 'delete', 'trace', 'post', 'put', 'patch'), array($this->options));
 		$this->input = new Input;
-		$this->application = new WebInspector;
+		$this->application = $this->getMockBuilder('Joomla\\Application\\AbstractWebApplication')->getMock();
 		$this->oauth = new Client($this->options, $this->http, $this->input, $this->application);
 		$this->object = new OAuth2($this->options, $this->oauth);
 	}
@@ -87,7 +87,6 @@ class JGoogleAuthOauth2Test extends \PHPUnit_Framework_TestCase
 		$this->object->setOption('sendheaders', true);
 
 		$this->object->authenticate();
-		$this->assertEquals(0, $this->application->closed);
 
 		$this->object->setOption('clientsecret', 'jeDs8rKw_jDJW8MMf-ff8ejs');
 		$this->input->set('code', '4/wEr_dK8SDkjfpwmc98KejfiwJP-f4wm.kdowmnr82jvmeisjw94mKFIJE48mcEM');

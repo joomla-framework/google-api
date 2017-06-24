@@ -6,12 +6,12 @@
 
 namespace Joomla\Google\Tests;
 
+use Joomla\Application\AbstractWebApplication;
 use Joomla\OAuth2\Client;
 use Joomla\Google\Auth\OAuth2;
 use Joomla\Registry\Registry;
 use Joomla\Http\Http;
 use Joomla\Input\Input;
-use Joomla\Test\WebInspector;
 
 /**
  * Test case for JGoogle.
@@ -46,6 +46,11 @@ class GoogleTestCase extends \PHPUnit_Framework_TestCase
 	protected $auth;
 
 	/**
+	 * @var  AbstractWebApplication|\PHPUnit_Framework_MockObject_MockObject  The application object to send HTTP headers for redirects.
+	 */
+	protected $application;
+
+	/**
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
 	 *
@@ -64,7 +69,7 @@ class GoogleTestCase extends \PHPUnit_Framework_TestCase
 		$this->options = new Registry;
 		$this->http = $this->getMock('Joomla\\Http\\Http', array('head', 'get', 'delete', 'trace', 'post', 'put', 'patch'), array($this->options));
 		$this->input = new Input;
-		$this->application = new WebInspector;
+		$this->application = $this->getMockBuilder('Joomla\\Application\\AbstractWebApplication')->getMock();
 		$this->oauth = new Client($this->options, $this->http, $this->input, $this->application);
 		$this->auth = new OAuth2($this->options, $this->oauth);
 
