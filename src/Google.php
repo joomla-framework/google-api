@@ -50,10 +50,10 @@ class Google
 	 *
 	 * @since   1.0
 	 */
-	public function __construct($options = array(), Auth $auth = null)
+	public function __construct($options = array(), Auth\OAuth2 $auth)
 	{
 		$this->options = $options;
-		$this->auth  = isset($auth) ? $auth : new Auth\OAuth2($this->options);
+		$this->auth  = $auth;
 	}
 
 	/**
