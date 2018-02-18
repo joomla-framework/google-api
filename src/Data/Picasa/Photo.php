@@ -196,19 +196,19 @@ class Photo extends Data
 	/**
 	 * Method to get the time of the photo
 	 *
-	 * @return  double  Photo time
+	 * @return  float  Photo time
 	 *
 	 * @since   1.0
 	 */
 	public function getTime()
 	{
-		return (double) $this->xml->children('gphoto', true)->timestamp / 1000;
+		return (float) $this->xml->children('gphoto', true)->timestamp / 1000;
 	}
 
 	/**
 	 * Method to get the size of the photo
 	 *
-	 * @return  int  Photo size
+	 * @return  integer  Photo size
 	 *
 	 * @since   1.0
 	 */
@@ -220,7 +220,7 @@ class Photo extends Data
 	/**
 	 * Method to get the height of the photo
 	 *
-	 * @return  int  Photo height
+	 * @return  integer  Photo height
 	 *
 	 * @since   1.0
 	 */
@@ -232,7 +232,7 @@ class Photo extends Data
 	/**
 	 * Method to get the width of the photo
 	 *
-	 * @return  int  Photo width
+	 * @return  integer  Photo width
 	 *
 	 * @since   1.0
 	 */

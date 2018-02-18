@@ -76,7 +76,7 @@ abstract class Embed
 	/**
 	 * Method to output the javascript header for the embed API
 	 *
-	 * @return  null
+	 * @return  void
 	 *
 	 * @since   1.0
 	 */
@@ -88,7 +88,7 @@ abstract class Embed
 	/**
 	 * Method to output the body for the API
 	 *
-	 * @return  null
+	 * @return  void
 	 *
 	 * @since   1.0
 	 */

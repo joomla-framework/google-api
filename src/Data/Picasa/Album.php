@@ -174,13 +174,13 @@ class Album extends Data
 	/**
 	 * Method to get the time of the album
 	 *
-	 * @return  double  Album time
+	 * @return  float  Album time
 	 *
 	 * @since   1.0
 	 */
 	public function getTime()
 	{
-		return (double) $this->xml->children('gphoto', true)->timestamp / 1000;
+		return (float) $this->xml->children('gphoto', true)->timestamp / 1000;
 	}
 
 	/**

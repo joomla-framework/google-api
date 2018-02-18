@@ -92,7 +92,9 @@ class Picasa extends Data
 	 *
 	 * @since   1.0
 	 */
-	public function createAlbum($userID = 'default', $title = '', $access = 'private', $summary = '', $location = '', $time = false, $keywords = array())
+	public function createAlbum($userID = 'default', $title = '', $access = 'private', $summary = '', $location = '', $time = false,
+		$keywords = array()
+	)
 	{
 		if ($this->isAuthenticated())
 		{
