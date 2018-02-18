@@ -192,7 +192,12 @@ class Calendar extends Data
 	{
 		if ($this->isAuthenticated())
 		{
-			$data = $this->query('https://www.googleapis.com/calendar/v3/users/me/calendars/' . urlencode($calendarID) . '/clear', null, null, 'post');
+			$data = $this->query(
+				'https://www.googleapis.com/calendar/v3/users/me/calendars/' . urlencode($calendarID) . '/clear',
+				null,
+				null,
+				'post'
+			);
 
 			if ($data->body != '')
 			{
@@ -444,7 +449,8 @@ class Calendar extends Data
 				$options['end']['timeZone'] = $timezone;
 			}
 
-			$url = 'https://www.googleapis.com/calendar/v3/calendars/' . urlencode($calendarID) . '/events' . ($notify ? '?sendNotifications=true' : '');
+			$encodedCalendar = urlencode($calendarID);
+			$url = "https://www.googleapis.com/calendar/v3/users/me/calendars/$encodedCalendar/events" . ($notify ? '?sendNotifications=true' : '');
 			$jdata = $this->query($url, json_encode($options), array('Content-type' => 'application/json'), 'post');
 
 			if ($data = json_decode($jdata->body, true))
@@ -477,7 +483,9 @@ class Calendar extends Data
 		{
 			$next = array_key_exists('nextPageToken', $options) ? $options['nextPage'] : null;
 			unset($options['nextPageToken']);
-			$url = 'https://www.googleapis.com/calendar/v3/users/me/calendars/' . urlencode($calendarID) . '/events/' . urlencode($eventID) . '/instances';
+			$encodedCalendar = urlencode($calendarID);
+			$encodedEvent = urlencode($eventID);
+			$url = "https://www.googleapis.com/calendar/v3/users/me/calendars/$encodedCalendar/events/$encodedEvent/instances";
 			$url .= '?' . http_build_query($options);
 
 			return $this->listGetData($url, $maxpages, $next);
