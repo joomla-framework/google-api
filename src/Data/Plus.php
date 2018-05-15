@@ -15,7 +15,8 @@ use Joomla\Registry\Registry;
 /**
  * Google+ data class for the Joomla Framework.
  *
- * @since  1.0
+ * @since       1.0
+ * @deprecated  The joomla/google package is deprecated
  */
 class Plus extends Data
 {

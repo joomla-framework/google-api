@@ -14,7 +14,8 @@ namespace Joomla\Google;
  * @property-read  Data   $data    Google API object for data.
  * @property-read  Embed  $embed   Google API object for embed generation.
  *
- * @since  1.0
+ * @since       1.0
+ * @deprecated  The joomla/google package is deprecated
  */
 class Google
 {

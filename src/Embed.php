@@ -13,7 +13,8 @@ use Joomla\Uri\Uri;
 /**
  * Google API object class for the Joomla Framework.
  *
- * @since  1.0
+ * @since       1.0
+ * @deprecated  The joomla/google package is deprecated
  */
 abstract class Embed
 {

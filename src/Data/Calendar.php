@@ -18,7 +18,8 @@ use InvalidArgumentException;
 /**
  * Google Calendar data class for the Joomla Framework.
  *
- * @since  1.0
+ * @since       1.0
+ * @deprecated  The joomla/google package is deprecated
  */
 class Calendar extends Data
 {

@@ -11,7 +11,8 @@ namespace Joomla\Google;
 /**
  * Google authentication class abstract
  *
- * @since  1.0
+ * @since       1.0
+ * @deprecated  The joomla/google package is deprecated
  */
 abstract class Auth
 {

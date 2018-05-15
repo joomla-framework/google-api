@@ -1,5 +1,9 @@
 ## The Google Package [![Build Status](https://travis-ci.org/joomla-framework/google-api.png?branch=master)](https://travis-ci.org/joomla-framework/google-api)
 
+### Deprecated
+
+The `joomla/google` package is deprecated with no further updates planned.
+
 ### Using the Google Package
 
 The Google package is designed to be a straightforward interface for working with various Google APIs. You can find a list of APIs and documentation for each API at [https://developers.google.com/products/.](https://developers.google.com/products/)
