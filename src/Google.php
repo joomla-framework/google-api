@@ -2,7 +2,7 @@
 /**
  * Part of the Joomla Framework Google Package
  *
- * @copyright  Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
+ * @copyright  Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -11,7 +11,11 @@ namespace Joomla\Google;
 /**
  * Joomla Framework class for interacting with the Google APIs.
  *
- * @since  1.0
+ * @property-read  Data   $data    Google API object for data.
+ * @property-read  Embed  $embed   Google API object for embed generation.
+ *
+ * @since       1.0
+ * @deprecated  The joomla/google package is deprecated
  */
 class Google
 {
