@@ -10,7 +10,6 @@ namespace Joomla\Google\Auth;
 
 use Joomla\Google\Auth;
 use Joomla\OAuth2\Client;
-use Joomla\Registry\Registry;
 
 /**
  * Google OAuth authentication class
@@ -37,7 +36,7 @@ class OAuth2 extends Auth
 	public function __construct($options, Client $client)
 	{
 		$this->options = $options;
-		$this->client = $client;
+		$this->client  = $client;
 	}
 
 	/**
@@ -106,7 +105,7 @@ class OAuth2 extends Auth
 
 		if (!$this->client->getOption('requestparams'))
 		{
-			$this->client->setOption('requestparams', Array());
+			$this->client->setOption('requestparams', array());
 		}
 
 		$params = $this->client->getOption('requestparams');

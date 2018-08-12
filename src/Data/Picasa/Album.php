@@ -8,8 +8,8 @@
 
 namespace Joomla\Google\Data\Picasa;
 
-use Joomla\Google\Data;
 use Joomla\Google\Auth;
+use Joomla\Google\Data;
 use Joomla\Registry\Registry;
 
 /**
@@ -290,7 +290,7 @@ class Album extends Data
 			try
 			{
 				$headers = array('GData-Version' => 2, 'Content-type' => 'application/atom+xml', 'If-Match' => $match);
-				$jdata = $this->query($url, $this->xml->asXML(), $headers, 'put');
+				$jdata   = $this->query($url, $this->xml->asXML(), $headers, 'put');
 			}
 			catch (\Exception $e)
 			{
@@ -323,8 +323,8 @@ class Album extends Data
 	{
 		if ($this->isAuthenticated())
 		{
-			$url = $this->getLink();
-			$jdata = $this->query($url, null, array('GData-Version' => 2));
+			$url       = $this->getLink();
+			$jdata     = $this->query($url, null, array('GData-Version' => 2));
 			$this->xml = $this->safeXml($jdata->body);
 
 			return $this;
@@ -347,9 +347,9 @@ class Album extends Data
 	{
 		if ($this->isAuthenticated())
 		{
-			$url = $this->getLink('http://schemas.google.com/g/2005#feed');
+			$url   = $this->getLink('http://schemas.google.com/g/2005#feed');
 			$jdata = $this->query($url, null, array('GData-Version' => 2));
-			$xml = $this->safeXml($jdata->body);
+			$xml   = $this->safeXml($jdata->body);
 
 			if (isset($xml->children()->entry))
 			{

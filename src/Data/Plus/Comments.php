@@ -8,9 +8,8 @@
 
 namespace Joomla\Google\Data\Plus;
 
-
-use Joomla\Google\Data;
 use Joomla\Google\Auth;
+use Joomla\Google\Data;
 use Joomla\Registry\Registry;
 
 /**

@@ -54,7 +54,7 @@ class Google
 	public function __construct($options = array(), Auth $auth = null)
 	{
 		$this->options = $options;
-		$this->auth  = isset($auth) ? $auth : new Auth\OAuth2($this->options);
+		$this->auth    = isset($auth) ? $auth : new Auth\OAuth2($this->options);
 	}
 
 	/**
@@ -95,7 +95,7 @@ class Google
 				return new Data\Calendar($options, $auth);
 
 			default:
-				return null;
+				return;
 		}
 	}
 
@@ -125,7 +125,7 @@ class Google
 				return new Embed\Analytics($options);
 
 			default:
-				return null;
+				return;
 		}
 	}
 

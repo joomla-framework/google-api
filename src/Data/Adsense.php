@@ -9,11 +9,11 @@
 namespace Joomla\Google\Data;
 
 use DateTime;
-use Joomla\Google\Data;
+use InvalidArgumentException;
 use Joomla\Google\Auth;
+use Joomla\Google\Data;
 use Joomla\Registry\Registry;
 use UnexpectedValueException;
-use InvalidArgumentException;
 
 /**
  * Google Adsense data class for the Joomla Framework.
@@ -56,7 +56,7 @@ class Adsense extends Data
 	{
 		if ($this->isAuthenticated())
 		{
-			$url = 'https://www.googleapis.com/adsense/v1.1/accounts/' . urlencode($accountID) . ($subaccounts ? '?tree=true' : '');
+			$url   = 'https://www.googleapis.com/adsense/v1.1/accounts/' . urlencode($accountID) . ($subaccounts ? '?tree=true' : '');
 			$jdata = $this->query($url);
 
 			if ($data = json_decode($jdata->body, true))
@@ -381,7 +381,7 @@ class Adsense extends Data
 			}
 
 			$options['startDate'] = $startobj->format('Y-m-d');
-			$options['endDate'] = $endobj->format('Y-m-d');
+			$options['endDate']   = $endobj->format('Y-m-d');
 
 			$begin = array_key_exists('startIndex', $options) ? $options['startIndex'] : 0;
 			unset($options['startIndex']);
@@ -393,18 +393,18 @@ class Adsense extends Data
 				$url .= '&';
 			}
 
-			$i = 0;
+			$i            = 0;
 			$data['rows'] = array();
 
 			do
 			{
-				$jdata = $this->query($url . 'startIndex=' . count($data['rows']));
+				$jdata   = $this->query($url . 'startIndex=' . count($data['rows']));
 				$newdata = json_decode($jdata->body, true);
 
 				if ($newdata && array_key_exists('rows', $newdata))
 				{
 					$newdata['rows'] = array_merge($data['rows'], $newdata['rows']);
-					$data = $newdata;
+					$data            = $newdata;
 				}
 				else
 				{

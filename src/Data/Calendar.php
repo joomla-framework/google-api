@@ -9,11 +9,11 @@
 namespace Joomla\Google\Data;
 
 use DateTime;
-use Joomla\Google\Data;
+use InvalidArgumentException;
 use Joomla\Google\Auth;
+use Joomla\Google\Data;
 use Joomla\Registry\Registry;
 use UnexpectedValueException;
-use InvalidArgumentException;
 
 /**
  * Google Calendar data class for the Joomla Framework.
@@ -117,8 +117,8 @@ class Calendar extends Data
 		if ($this->isAuthenticated())
 		{
 			$options['id'] = $calendarID;
-			$url = 'https://www.googleapis.com/calendar/v3/users/me/calendarList';
-			$jdata = $this->query($url, json_encode($options), array('Content-type' => 'application/json'), 'post');
+			$url           = 'https://www.googleapis.com/calendar/v3/users/me/calendarList';
+			$jdata         = $this->query($url, json_encode($options), array('Content-type' => 'application/json'), 'post');
 
 			if ($data = json_decode($jdata->body, true))
 			{
@@ -177,7 +177,7 @@ class Calendar extends Data
 	{
 		if ($this->isAuthenticated())
 		{
-			$url = 'https://www.googleapis.com/calendar/v3/users/me/calendarList/' . urlencode($calendarID);
+			$url   = 'https://www.googleapis.com/calendar/v3/users/me/calendarList/' . urlencode($calendarID);
 			$jdata = $this->query($url, json_encode($options), array('Content-type' => 'application/json'), 'put');
 
 			if ($data = json_decode($jdata->body, true))
@@ -274,8 +274,8 @@ class Calendar extends Data
 		if ($this->isAuthenticated())
 		{
 			$options['summary'] = $title;
-			$url = 'https://www.googleapis.com/calendar/v3/calendars';
-			$jdata = $this->query($url, json_encode($options), array('Content-type' => 'application/json'), 'post');
+			$url                = 'https://www.googleapis.com/calendar/v3/calendars';
+			$jdata              = $this->query($url, json_encode($options), array('Content-type' => 'application/json'), 'post');
 
 			if ($data = json_decode($jdata->body, true))
 			{
@@ -307,9 +307,9 @@ class Calendar extends Data
 	{
 		if ($this->isAuthenticated())
 		{
-			$url = 'https://www.googleapis.com/calendar/v3/users/me/calendars/' . urlencode($calendarID);
+			$url   = 'https://www.googleapis.com/calendar/v3/users/me/calendars/' . urlencode($calendarID);
 			$jdata = $this->query($url, json_encode($options), array('Content-type' => 'application/json'), 'put');
-			$data = json_decode($jdata->body, true);
+			$data  = json_decode($jdata->body, true);
 
 			if ($data && array_key_exists('items', $data))
 			{
@@ -341,7 +341,7 @@ class Calendar extends Data
 	{
 		if ($this->isAuthenticated())
 		{
-			$url = 'https://www.googleapis.com/calendar/v3/users/me/calendars/' . urlencode($calendarID) . '/events/' . urlencode($eventID);
+			$url  = 'https://www.googleapis.com/calendar/v3/users/me/calendars/' . urlencode($calendarID) . '/events/' . urlencode($eventID);
 			$data = $this->query($url, null, null, 'delete');
 
 			if ($data->body != '')
@@ -460,33 +460,33 @@ class Calendar extends Data
 			if ($allday)
 			{
 				$options['start'] = array('date' => $startobj->format('Y-m-d'));
-				$options['end'] = array('date' => $endobj->format('Y-m-d'));
+				$options['end']   = array('date' => $endobj->format('Y-m-d'));
 			}
 			else
 			{
 				$options['start'] = array('dateTime' => $startobj->format(DateTime::RFC3339));
-				$options['end'] = array('dateTime' => $endobj->format(DateTime::RFC3339));
+				$options['end']   = array('dateTime' => $endobj->format(DateTime::RFC3339));
 			}
 
 			if ($timezone === true)
 			{
 				$options['start']['timeZone'] = $startobj->getTimezone()->getName();
-				$options['end']['timeZone'] = $endobj->getTimezone()->getName();
+				$options['end']['timeZone']   = $endobj->getTimezone()->getName();
 			}
 			elseif (is_a($timezone, 'DateTimeZone'))
 			{
 				$options['start']['timeZone'] = $timezone->getName();
-				$options['end']['timeZone'] = $timezone->getName();
+				$options['end']['timeZone']   = $timezone->getName();
 			}
 			elseif (is_string($timezone))
 			{
 				$options['start']['timeZone'] = $timezone;
-				$options['end']['timeZone'] = $timezone;
+				$options['end']['timeZone']   = $timezone;
 			}
 
 			$encodedCalendar = urlencode($calendarID);
-			$url = "https://www.googleapis.com/calendar/v3/users/me/calendars/$encodedCalendar/events" . ($notify ? '?sendNotifications=true' : '');
-			$jdata = $this->query($url, json_encode($options), array('Content-type' => 'application/json'), 'post');
+			$url             = "https://www.googleapis.com/calendar/v3/users/me/calendars/$encodedCalendar/events" . ($notify ? '?sendNotifications=true' : '');
+			$jdata           = $this->query($url, json_encode($options), array('Content-type' => 'application/json'), 'post');
 
 			if ($data = json_decode($jdata->body, true))
 			{
@@ -523,8 +523,8 @@ class Calendar extends Data
 			$next = array_key_exists('nextPageToken', $options) ? $options['nextPage'] : null;
 			unset($options['nextPageToken']);
 			$encodedCalendar = urlencode($calendarID);
-			$encodedEvent = urlencode($eventID);
-			$url = "https://www.googleapis.com/calendar/v3/users/me/calendars/$encodedCalendar/events/$encodedEvent/instances";
+			$encodedEvent    = urlencode($eventID);
+			$url             = "https://www.googleapis.com/calendar/v3/users/me/calendars/$encodedCalendar/events/$encodedEvent/instances";
 			$url .= '?' . http_build_query($options);
 
 			return $this->listGetData($url, $maxpages, $next);

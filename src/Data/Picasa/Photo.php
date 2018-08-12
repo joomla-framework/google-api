@@ -8,8 +8,8 @@
 
 namespace Joomla\Google\Data\Picasa;
 
-use Joomla\Google\Data;
 use Joomla\Google\Auth;
+use Joomla\Google\Data;
 use Joomla\Registry\Registry;
 
 /**
@@ -149,9 +149,9 @@ class Photo extends Data
 
 		foreach ($this->xml->children('media', true)->group->thumbnail as $item)
 		{
-			$url = (string) $item->attributes()->url;
-			$width = (int) $item->attributes()->width;
-			$height = (int) $item->attributes()->height;
+			$url            = (string) $item->attributes()->url;
+			$width          = (int) $item->attributes()->width;
+			$height         = (int) $item->attributes()->height;
 			$thumbs[$width] = array('url' => $url, 'w' => $width, 'h' => $height);
 		}
 
@@ -332,7 +332,7 @@ class Photo extends Data
 			try
 			{
 				$headers = array('GData-Version' => 2, 'Content-type' => 'application/atom+xml', 'If-Match' => $match);
-				$jdata = $this->query($url, $this->xml->asXML(), $headers, 'put');
+				$jdata   = $this->query($url, $this->xml->asXML(), $headers, 'put');
 			}
 			catch (\Exception $e)
 			{
@@ -365,8 +365,8 @@ class Photo extends Data
 	{
 		if ($this->isAuthenticated())
 		{
-			$url = $this->getLink();
-			$jdata = $this->query($url, null, array('GData-Version' => 2));
+			$url       = $this->getLink();
+			$jdata     = $this->query($url, null, array('GData-Version' => 2));
 			$this->xml = $this->safeXml($jdata->body);
 
 			return $this;

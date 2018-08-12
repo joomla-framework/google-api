@@ -101,7 +101,7 @@ class Analytics extends Embed
 	{
 		$call = array('name' => $method, 'params' => $params);
 
-		$calls = $this->listCalls();
+		$calls   = $this->listCalls();
 		$calls[] = $call;
 		$this->setOption('calls', $calls);
 
@@ -300,7 +300,7 @@ class Analytics extends Embed
 		}
 
 		$prefix = $this->isSecure() ? 'https://ssl' : 'http://www';
-		$code = $this->getOption('code');
+		$code   = $this->getOption('code');
 
 		if ($this->isAsync())
 		{

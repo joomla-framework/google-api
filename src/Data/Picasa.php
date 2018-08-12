@@ -8,8 +8,8 @@
 
 namespace Joomla\Google\Data;
 
-use Joomla\Google\Data;
 use Joomla\Google\Auth;
+use Joomla\Google\Data;
 use Joomla\Registry\Registry;
 
 /**
@@ -52,9 +52,9 @@ class Picasa extends Data
 	{
 		if ($this->isAuthenticated())
 		{
-			$url = 'https://picasaweb.google.com/data/feed/api/user/' . urlencode($userID);
+			$url   = 'https://picasaweb.google.com/data/feed/api/user/' . urlencode($userID);
 			$jdata = $this->query($url, null, array('GData-Version' => 2));
-			$xml = $this->safeXml($jdata->body);
+			$xml   = $this->safeXml($jdata->body);
 
 			if (isset($xml->children()->entry))
 			{
@@ -99,9 +99,9 @@ class Picasa extends Data
 	{
 		if ($this->isAuthenticated())
 		{
-			$time = $time ? $time : time();
+			$time  = $time ? $time : time();
 			$title = $title != '' ? $title : date('F j, Y');
-			$xml = new \SimpleXMLElement('<entry></entry>');
+			$xml   = new \SimpleXMLElement('<entry></entry>');
 			$xml->addAttribute('xmlns', 'http://www.w3.org/2005/Atom');
 			$xml->addChild('title', $title);
 			$xml->addChild('summary', $summary);
@@ -114,7 +114,7 @@ class Picasa extends Data
 			$cat->addAttribute('scheme', 'http://schemas.google.com/g/2005#kind');
 			$cat->addAttribute('term', 'http://schemas.google.com/photos/2007#album');
 
-			$url = 'https://picasaweb.google.com/data/feed/api/user/' . urlencode($userID);
+			$url   = 'https://picasaweb.google.com/data/feed/api/user/' . urlencode($userID);
 			$jdata = $this->query($url, $xml->asXML(), array('GData-Version' => 2, 'Content-type' => 'application/atom+xml'), 'post');
 
 			$xml = $this->safeXml($jdata->body);
@@ -142,7 +142,7 @@ class Picasa extends Data
 		if ($this->isAuthenticated())
 		{
 			$jdata = $this->query($url, null, array('GData-Version' => 2));
-			$xml = $this->safeXml($jdata->body);
+			$xml   = $this->safeXml($jdata->body);
 
 			return new Picasa\Album($xml, $this->options, $this->auth);
 		}

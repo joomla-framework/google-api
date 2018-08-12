@@ -8,9 +8,9 @@
 
 namespace Joomla\Google;
 
-use UnexpectedValueException;
-use SimpleXMLElement;
 use Exception;
+use SimpleXMLElement;
+use UnexpectedValueException;
 
 /**
  * Google API data class for the Joomla Framework.
@@ -43,7 +43,7 @@ abstract class Data
 	public function __construct($options = array(), Auth $auth = null)
 	{
 		$this->options = $options;
-		$this->auth = isset($auth) ? $auth : new Auth\OAuth2($this->options);
+		$this->auth    = isset($auth) ? $auth : new Auth\OAuth2($this->options);
 	}
 
 	/**
@@ -118,7 +118,7 @@ abstract class Data
 		}
 
 		$jdata = $this->query($qurl);
-		$data = json_decode($jdata->body, true);
+		$data  = json_decode($jdata->body, true);
 
 		if ($data && array_key_exists('items', $data))
 		{

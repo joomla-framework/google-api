@@ -8,12 +8,12 @@
 
 namespace Joomla\Google\Embed;
 
-use Joomla\Http\Http;
 use Joomla\Google\Embed;
-use Joomla\Uri\Uri;
+use Joomla\Http\Http;
 use Joomla\Registry\Registry;
-use RuntimeException;
+use Joomla\Uri\Uri;
 use OutOfBoundsException;
+use RuntimeException;
 use UnexpectedValueException;
 
 /**
@@ -358,9 +358,9 @@ class Maps extends Embed
 		}
 
 		$location = array_values($location);
-		$marker = array('loc' => $location, 'title' => $title, 'options' => $options);
+		$marker   = array('loc' => $location, 'title' => $title, 'options' => $options);
 
-		$markers = $this->listMarkers();
+		$markers   = $this->listMarkers();
 		$markers[] = $marker;
 		$this->setOption('markers', $markers);
 
@@ -562,13 +562,13 @@ class Maps extends Embed
 			throw new UnexpectedValueException('A Google Maps API key is required.');
 		}
 
-		$zoom = $this->getZoom();
-		$center = $this->getCenter();
+		$zoom    = $this->getZoom();
+		$center  = $this->getCenter();
 		$maptype = $this->getMapType();
-		$id = $this->getMapId();
-		$scheme = $this->isSecure() ? 'https' : 'http';
-		$key = $this->getKey();
-		$sensor = $this->hasSensor() ? 'true' : 'false';
+		$id      = $this->getMapId();
+		$scheme  = $this->isSecure() ? 'https' : 'http';
+		$key     = $this->getKey();
+		$sensor  = $this->hasSensor() ? 'true' : 'false';
 
 		$setup = 'var mapOptions = {';
 		$setup .= "zoom: {$zoom},";
@@ -580,8 +580,8 @@ class Maps extends Embed
 
 		foreach ($this->listMarkers() as $marker)
 		{
-			$loc = $marker['loc'];
-			$title = $marker['title'];
+			$loc     = $marker['loc'];
+			$title   = $marker['title'];
 			$options = $marker['options'];
 
 			$setup .= 'new google.maps.Marker({';
@@ -650,7 +650,7 @@ class Maps extends Embed
 	 */
 	public function getBody()
 	{
-		$id = $this->getMapId();
+		$id    = $this->getMapId();
 		$class = $this->getMapClass();
 		$style = $this->getMapStyle();
 
@@ -708,7 +708,7 @@ class Maps extends Embed
 
 		if ($data['status'] != 'OK')
 		{
-			return null;
+			return;
 		}
 
 		return $data['results'][0];
