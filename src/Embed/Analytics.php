@@ -135,7 +135,7 @@ class Analytics extends Embed
 
 		if ($index === null)
 		{
-			$index = count($calls) - 1;
+			$index = \count($calls) - 1;
 		}
 
 		$call = $calls[$index];

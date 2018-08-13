@@ -64,10 +64,8 @@ class People extends Data
 
 			return json_decode($jdata->body, true);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -118,10 +116,8 @@ class People extends Data
 
 			return json_decode($jdata->body, true);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -168,9 +164,7 @@ class People extends Data
 
 			return json_decode($jdata->body, true);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 }

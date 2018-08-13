@@ -63,15 +63,11 @@ class Adsense extends Data
 			{
 				return $data;
 			}
-			else
-			{
-				throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
-			}
+
+			throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -95,10 +91,8 @@ class Adsense extends Data
 
 			return $this->listGetData($url, $maxpages, $next);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -123,10 +117,8 @@ class Adsense extends Data
 
 			return $this->listGetData($url, $maxpages, $next);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -153,15 +145,11 @@ class Adsense extends Data
 			{
 				return $data;
 			}
-			else
-			{
-				throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
-			}
+
+			throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -189,10 +177,8 @@ class Adsense extends Data
 
 			return $this->listGetData($url, $maxpages, $next);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -219,15 +205,11 @@ class Adsense extends Data
 			{
 				return $data;
 			}
-			else
-			{
-				throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
-			}
+
+			throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -254,10 +236,8 @@ class Adsense extends Data
 
 			return $this->listGetData($url, $maxpages, $next);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -285,10 +265,8 @@ class Adsense extends Data
 
 			return $this->listGetData($url, $maxpages, $next);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -315,10 +293,8 @@ class Adsense extends Data
 
 			return $this->listGetData($url, $maxpages, $next);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -340,12 +316,12 @@ class Adsense extends Data
 	{
 		if ($this->isAuthenticated())
 		{
-			if (is_int($start))
+			if (\is_int($start))
 			{
 				$startobj = new DateTime;
 				$startobj->setTimestamp($start);
 			}
-			elseif (is_string($start))
+			elseif (\is_string($start))
 			{
 				$startobj = new DateTime($start);
 			}
@@ -362,12 +338,12 @@ class Adsense extends Data
 			{
 				$endobj = new DateTime;
 			}
-			elseif (is_int($end))
+			elseif (\is_int($end))
 			{
 				$endobj = new DateTime;
 				$endobj->setTimestamp($end);
 			}
-			elseif (is_string($end))
+			elseif (\is_string($end))
 			{
 				$endobj = new DateTime($end);
 			}
@@ -398,7 +374,7 @@ class Adsense extends Data
 
 			do
 			{
-				$jdata   = $this->query($url . 'startIndex=' . count($data['rows']));
+				$jdata   = $this->query($url . 'startIndex=' . \count($data['rows']));
 				$newdata = json_decode($jdata->body, true);
 
 				if ($newdata && array_key_exists('rows', $newdata))
@@ -412,14 +388,11 @@ class Adsense extends Data
 				}
 
 				$i++;
-			}
-			while (count($data['rows']) < $data['totalMatchedRows'] && $i < $maxpages);
+			} while (\count($data['rows']) < $data['totalMatchedRows'] && $i < $maxpages);
 
 			return $data;
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 }

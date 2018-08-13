@@ -90,10 +90,8 @@ class Activities extends Data
 
 			return json_decode($jdata->body, true);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -130,10 +128,8 @@ class Activities extends Data
 
 			return json_decode($jdata->body, true);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -191,9 +187,7 @@ class Activities extends Data
 
 			return json_decode($jdata->body, true);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 }

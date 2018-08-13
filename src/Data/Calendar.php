@@ -64,10 +64,8 @@ class Calendar extends Data
 
 			return true;
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -90,15 +88,11 @@ class Calendar extends Data
 			{
 				return $data;
 			}
-			else
-			{
-				throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
-			}
+
+			throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -124,15 +118,11 @@ class Calendar extends Data
 			{
 				return $data;
 			}
-			else
-			{
-				throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
-			}
+
+			throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -156,10 +146,8 @@ class Calendar extends Data
 
 			return $this->listGetData($url, $maxpages, $next);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -184,15 +172,11 @@ class Calendar extends Data
 			{
 				return $data;
 			}
-			else
-			{
-				throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
-			}
+
+			throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -223,10 +207,8 @@ class Calendar extends Data
 
 			return true;
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -252,10 +234,8 @@ class Calendar extends Data
 
 			return true;
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -281,15 +261,11 @@ class Calendar extends Data
 			{
 				return $data;
 			}
-			else
-			{
-				throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
-			}
+
+			throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -315,15 +291,11 @@ class Calendar extends Data
 			{
 				return $data;
 			}
-			else
-			{
-				throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
-			}
+
+			throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -351,10 +323,8 @@ class Calendar extends Data
 
 			return true;
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -381,15 +351,11 @@ class Calendar extends Data
 			{
 				return $data;
 			}
-			else
-			{
-				throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
-			}
+
+			throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -417,12 +383,12 @@ class Calendar extends Data
 			{
 				$startobj = new DateTime;
 			}
-			elseif (is_int($start))
+			elseif (\is_int($start))
 			{
 				$startobj = new DateTime;
 				$startobj->setTimestamp($start);
 			}
-			elseif (is_string($start))
+			elseif (\is_string($start))
 			{
 				$startobj = new DateTime($start);
 			}
@@ -439,12 +405,12 @@ class Calendar extends Data
 			{
 				$endobj = $startobj;
 			}
-			elseif (is_int($end))
+			elseif (\is_int($end))
 			{
 				$endobj = new DateTime;
 				$endobj->setTimestamp($end);
 			}
-			elseif (is_string($end))
+			elseif (\is_string($end))
 			{
 				$endobj = new DateTime($end);
 			}
@@ -478,7 +444,7 @@ class Calendar extends Data
 				$options['start']['timeZone'] = $timezone->getName();
 				$options['end']['timeZone']   = $timezone->getName();
 			}
-			elseif (is_string($timezone))
+			elseif (\is_string($timezone))
 			{
 				$options['start']['timeZone'] = $timezone;
 				$options['end']['timeZone']   = $timezone;
@@ -492,15 +458,11 @@ class Calendar extends Data
 			{
 				return $data;
 			}
-			else
-			{
-				throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
-			}
+
+			throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -529,10 +491,8 @@ class Calendar extends Data
 
 			return $this->listGetData($url, $maxpages, $next);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -557,10 +517,8 @@ class Calendar extends Data
 
 			return $this->listGetData($url, $maxpages, $next);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -588,15 +546,11 @@ class Calendar extends Data
 			{
 				return $data;
 			}
-			else
-			{
-				throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
-			}
+
+			throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -624,14 +578,10 @@ class Calendar extends Data
 			{
 				return $data;
 			}
-			else
-			{
-				throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
-			}
+
+			throw new UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 }

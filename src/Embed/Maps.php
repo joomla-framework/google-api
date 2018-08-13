@@ -296,7 +296,7 @@ class Maps extends Embed
 	{
 		if ($title)
 		{
-			$title = is_string($title) ? $title : null;
+			$title = \is_string($title) ? $title : null;
 
 			if (!$marker = $this->addMarker($location, $title, $markeroptions))
 			{
@@ -305,7 +305,7 @@ class Maps extends Embed
 
 			$location = $marker['loc'];
 		}
-		elseif (is_string($location))
+		elseif (\is_string($location))
 		{
 			$geocode = $this->geocodeAddress($location);
 
@@ -336,7 +336,7 @@ class Maps extends Embed
 	 */
 	public function addMarker($location, $title = null, $options = array())
 	{
-		if (is_string($location))
+		if (\is_string($location))
 		{
 			if (!$title)
 			{
@@ -395,10 +395,10 @@ class Maps extends Embed
 
 		if ($index === null)
 		{
-			$index = count($markers) - 1;
+			$index = \count($markers) - 1;
 		}
 
-		if ($index >= count($markers) || $index < 0)
+		if ($index >= \count($markers) || $index < 0)
 		{
 			throw new OutOfBoundsException('Marker index out of bounds.');
 		}
@@ -603,7 +603,7 @@ class Maps extends Embed
 			$output .= $setup;
 			$output .= '}';
 
-			$onload = "function() {";
+			$onload = 'function() {';
 			$onload .= 'var script = document.createElement("script");';
 			$onload .= 'script.type = "text/javascript";';
 			$onload .= "script.src = '{$scheme}://maps.googleapis.com/maps/api/js?key={$key}&sensor={$sensor}&callback={$asynccallback}';";
@@ -616,7 +616,7 @@ class Maps extends Embed
 			$output .= '</script>';
 			$output .= '<script type="text/javascript">';
 
-			$onload = "function() {";
+			$onload = 'function() {';
 			$onload .= $setup;
 			$onload .= '}';
 		}

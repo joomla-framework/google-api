@@ -94,10 +94,8 @@ class Album extends Data
 
 			return true;
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -306,10 +304,8 @@ class Album extends Data
 
 			return $this;
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -329,10 +325,8 @@ class Album extends Data
 
 			return $this;
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -362,15 +356,11 @@ class Album extends Data
 
 				return $items;
 			}
-			else
-			{
-				throw new \UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
-			}
+
+			throw new \UnexpectedValueException("Unexpected data received from Google: `{$jdata->body}`.");
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -394,12 +384,12 @@ class Album extends Data
 
 			if (!($type = $this->getMime($file)))
 			{
-				throw new \RuntimeException("Inappropriate file type.");
+				throw new \RuntimeException('Inappropriate file type.');
 			}
 
 			if (!file_exists($file))
 			{
-				throw new \RuntimeException("File not found.");
+				throw new \RuntimeException('File not found.');
 			}
 
 			if (!($data = file_get_contents($file)))
@@ -427,10 +417,8 @@ class Album extends Data
 
 			return new Photo($this->safeXml($jdata->body), $this->options, $this->auth);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**

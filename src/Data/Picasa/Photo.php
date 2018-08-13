@@ -94,10 +94,8 @@ class Photo extends Data
 
 			return true;
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -348,10 +346,8 @@ class Photo extends Data
 
 			return $this;
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**
@@ -371,9 +367,7 @@ class Photo extends Data
 
 			return $this;
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 }
