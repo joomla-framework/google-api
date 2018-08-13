@@ -625,14 +625,17 @@ class Maps extends Embed
 		{
 			case 'onload':
 				$output .= "window.onload={$onload};";
+
 				break;
 
 			case 'jquery':
 				$output .= "$(document).ready({$onload});";
+
 				break;
 
 			case 'mootools':
 				$output .= "window.addEvent('domready',{$onload});";
+
 				break;
 		}
 
