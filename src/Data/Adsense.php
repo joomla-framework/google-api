@@ -388,7 +388,8 @@ class Adsense extends Data
 				}
 
 				$i++;
-			} while (\count($data['rows']) < $data['totalMatchedRows'] && $i < $maxpages);
+			}
+			while (\count($data['rows']) < $data['totalMatchedRows'] && $i < $maxpages);
 
 			return $data;
 		}

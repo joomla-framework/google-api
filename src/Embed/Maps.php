@@ -679,7 +679,7 @@ class Maps extends Embed
 	 *
 	 * @param   string  $address  The address to geocode
 	 *
-	 * @return  array  An array containing Google's geocode data
+	 * @return  mixed  An array containing Google's geocode data or null on request failure
 	 *
 	 * @since   1.0
 	 * @throws  RuntimeException
