@@ -453,7 +453,7 @@ class Calendar extends Data
 			$encodedCalendar = urlencode($calendarID);
 
 			$url   = "https://www.googleapis.com/calendar/v3/users/me/calendars/$encodedCalendar/events" . ($notify ? '?sendNotifications=true' : '');
-			$jdata = $this->query($url, json_encode($options), ['Content-type' => 'application/json'], 'post');
+			$jdata = $this->query($url, json_encode($options), array('Content-type' => 'application/json'), 'post');
 
 			if ($data = json_decode($jdata->body, true))
 			{
