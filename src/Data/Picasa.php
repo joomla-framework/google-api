@@ -105,7 +105,7 @@ class Picasa extends Data
 			$xml->addChild('gphoto:access', $access);
 			$xml->addChild('gphoto:timestamp', $time);
 			$media = $xml->addChild('media:group', '', 'http://search.yahoo.com/mrss/');
-			$media->addChild('media:keywords', implode($keywords, ', '));
+			$media->addChild('media:keywords', implode(', ', $keywords));
 			$cat = $xml->addChild('category', '');
 			$cat->addAttribute('scheme', 'http://schemas.google.com/g/2005#kind');
 			$cat->addAttribute('term', 'http://schemas.google.com/photos/2007#album');
