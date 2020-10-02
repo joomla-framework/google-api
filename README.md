@@ -1,4 +1,4 @@
-## The Google Package [![Build Status](https://travis-ci.org/joomla-framework/google-api.png?branch=master)](https://travis-ci.org/joomla-framework/google-api)
+## The Google Package [![Build Status](https://ci.joomla.org/api/badges/joomla-framework/google-api/status.svg)](https://ci.joomla.org/joomla-framework/google-api)
 
 ### Deprecated
 
